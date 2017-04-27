@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,10 @@ namespace BartlettAreTheQAs
         public static string RootUrl = @"http://localhost:60634/Article/List";
         static BrowserHost()
         {
-            //Chrome is not working
-            // Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
-            Instance.Run("Blog", 60634);
+            //Chrome           
+            Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
+            //FireFox
+           // Instance.Run("Blog", 60634);
 
         }
 
