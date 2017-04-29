@@ -15,8 +15,10 @@ namespace BartlettAreTheQAs
         static BrowserHost()
         {
             //Chrome           
-            Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
-            //FireFox
+             //Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
+             Instance.Run("Blog", 60639, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
+
+             //FireFox
             // Instance.Run("Blog", 60634);
 
 
