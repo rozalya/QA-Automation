@@ -8,5 +8,6 @@ namespace BartlettAreTheQAs.Pages.HomePage
 {
 public static  class BlogHomePageAsserter
     {
+
     }
 }

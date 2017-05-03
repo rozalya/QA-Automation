@@ -13,7 +13,7 @@ namespace BartlettAreTheQAs.Pages.HomePage
         {
 
         }
-        public void Navigate()
+        public void NavigateTo()
         {
             this.Driver.Navigate().GoToUrl("http://localhost:60634/Article/List");
         }

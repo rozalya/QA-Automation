@@ -26,7 +26,7 @@ namespace BartlettAreTheQAs
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));           
             BlogHomePage home = new BlogHomePage(driver);
-            home.Navigate();
+            home.NavigateTo();
             Assert.IsTrue(home.Logo.Displayed);
             driver.Close();
 
