@@ -14,7 +14,7 @@ namespace BartlettAreTheQAs
     class BlogRegisterPageTests
     {
         [Test]
-        public void NavigatetoResiterPage()
+        public void NavigatetoRegisterPage()
         {
 
              IWebDriver driver = BrowserHost.Instance.Application.Browser;
