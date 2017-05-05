@@ -1,17 +1,8 @@
 ﻿using BartlettAreTheQAs.Pages.HomePage;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestStack.Seleno.BrowserStack.Core.Configuration;
 
 namespace BartlettAreTheQAs
 {

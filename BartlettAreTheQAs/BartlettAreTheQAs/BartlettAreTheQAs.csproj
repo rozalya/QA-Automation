@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>BartlettAreTheQAs</RootNamespace>
     <AssemblyName>BartlettAreTheQAs</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
@@ -42,7 +42,7 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <HintPath>..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="Gherkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.CustomPlugin.2.1.0\lib\net45\Gherkin.dll</HintPath>
@@ -50,8 +50,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
@@ -103,12 +104,6 @@
     <Reference Include="TestStack.Seleno, Version=0.9.61.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TestStack.Seleno.0.9.61\lib\NET40\TestStack.Seleno.dll</HintPath>
     </Reference>
-    <Reference Include="TestStack.Seleno.BrowserStack.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestStack.Seleno.BrowserStack.SpecFlowPlugin.1.0.8.8\lib\net451\TestStack.Seleno.BrowserStack.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="TestStack.Seleno.BrowserStack.SpecFlowPlugin, Version=1.0.8.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestStack.Seleno.BrowserStack.SpecFlowPlugin.1.0.8.8\lib\net451\TestStack.Seleno.BrowserStack.SpecFlowPlugin.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.4.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
@@ -120,7 +115,6 @@
     <Compile Include="BlogHomePageTests.cs" />
     <Compile Include="BlogRegisterPageTests.cs" />
     <Compile Include="BrowserHost.cs" />
-    <Compile Include="BrowserStackLocalServerRunner.cs" />
     <Compile Include="Models\AccessExcelData.cs" />
     <Compile Include="Models\RegisterPageUserModel.cs" />
     <Compile Include="Pages\BasePage.cs" />

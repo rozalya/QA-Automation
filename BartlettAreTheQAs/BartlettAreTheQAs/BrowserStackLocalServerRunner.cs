@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using TestStack.Seleno.BrowserStack.Core.Configuration;
 using TestStack.Seleno.Configuration.Contracts;
+using TestStack.Seleno;
 
 namespace BartlettAreTheQAs
 {
