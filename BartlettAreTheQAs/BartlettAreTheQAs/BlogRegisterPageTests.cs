@@ -18,7 +18,7 @@ namespace BartlettAreTheQAs
         {
 
              IWebDriver driver = BrowserHost.Instance.Application.Browser;
-             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
              RegisterPage RegPage = new RegisterPage(driver);
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
