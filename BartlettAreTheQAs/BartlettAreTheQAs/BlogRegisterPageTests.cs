@@ -22,7 +22,7 @@ namespace BartlettAreTheQAs
              RegisterPage RegPage = new RegisterPage(driver);
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
-             driver.Close();
+          //   driver.Close();
 
         }
 

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using TestStack.Seleno.Configuration;
 
 namespace BartlettAreTheQAs
 {
@@ -10,22 +11,24 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogHomePageTests
     {
+        private static SelenoHost host;
         [Test]
         public void NavigatetoBlog()
         {
-
+            host = new SelenoHost();
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));           
             BlogHomePage home = new BlogHomePage(driver);
             home.NavigateTo();
             Assert.IsTrue(home.Logo.Displayed);
-            driver.Close();
+     //       driver.Quit();
 
         }
 
         [Test]
         public void  FirstArticleLoggedUserNo()
         {
+            host = new SelenoHost();
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             BlogHomePage home = new BlogHomePage(driver);
@@ -33,7 +36,7 @@ namespace BartlettAreTheQAs
             home.FirstArticle.Click();
             IWebElement Text = driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
             Assert.IsTrue(Text.Displayed);
-            driver.Close();
+  //          driver.Quit();
 
         }
 
@@ -51,7 +54,7 @@ namespace BartlettAreTheQAs
             Assert.IsTrue(Login.Displayed);
 
 
-            driver.Close();
+//            driver.Close();
 
         }
 
