@@ -31,9 +31,7 @@ bld/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-# NUNIT
-*.VisualState.xml
-TestResult.xml
+
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
@@ -103,8 +101,7 @@ _ReSharper*/
 # JustCode is a .NET coding add-in
 .JustCode
 
-# TeamCity is a build add-in
-_TeamCity*
+
 
 # DotCover is a Code Coverage Tool
 *.dotCover
@@ -208,9 +205,7 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-# SQL Server files
-*.mdf
-*.ldf
+
 
 # Business Intelligence projects
 *.rdl.data
@@ -247,9 +242,7 @@ paket-files/
 # FAKE - F# Make
 .fake/
 
-# JetBrains Rider
-.idea/
-*.sln.iml
+
 
 # =========================
 # Operating System Files
