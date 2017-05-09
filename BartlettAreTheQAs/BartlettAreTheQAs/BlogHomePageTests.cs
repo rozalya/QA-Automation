@@ -11,40 +11,47 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogHomePageTests
     {
-        private static SelenoHost host;
-        [Test]
-        public void NavigatetoBlog()
+        public IWebDriver driver;        
+        [SetUp]
+     
+        public void Initialized()
         {
-            host = new SelenoHost();
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));           
-            BlogHomePage home = new BlogHomePage(driver);
-            home.NavigateTo();
-            Assert.IsTrue(home.Logo.Displayed);
-     //       driver.Quit();
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
+        [TearDown]
+        public void LogsandScreenshot()
+        {
+                  // Don't close the driver because of TeamCity  
+                  //driver.Close();
 
         }
 
-        [Test]
-        public void  FirstArticleLoggedUserNo()
+
+        [Test, Property("Priority", 2)]
+        [Author("Nataliya Zh")]
+        public void NavigatetoBlog()
+        {         
+            BlogHomePage home = new BlogHomePage(driver);
+            home.NavigateTo();
+            Assert.IsTrue(home.Logo.Displayed);
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Nataliya Zh")]
+        public void  GoInFirstArticleLoggedUserNo()
         {
-            host = new SelenoHost();
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             BlogHomePage home = new BlogHomePage(driver);
             home.NavigateTo();
             home.FirstArticle.Click();
             IWebElement Text = driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
             Assert.IsTrue(Text.Displayed);
-  //          driver.Quit();
-
         }
 
-        [Test]
-        public void FirstArticleClickOnEditLoggerUserNo()
+        [Test, Property("Priority", 2)]
+        [Author("Nataliya Zh")]
+        public void FirstArticleClickOnEditBtnLoggerUserNo()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             BlogHomePage home = new BlogHomePage(driver);
             home.NavigateTo();
             home.FirstArticle.Click();
@@ -52,10 +59,6 @@ namespace BartlettAreTheQAs
             EditButton.Click();
             IWebElement Login = driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
             Assert.IsTrue(Login.Displayed);
-
-
-//            driver.Close();
-
         }
 
     }

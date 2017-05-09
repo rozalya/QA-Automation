@@ -13,17 +13,29 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogRegisterPageTests
     {
-        [Test]
-        public void NavigatetoRegisterPage()
-        {
+        public IWebDriver driver;
+        [SetUp]
 
-             IWebDriver driver = BrowserHost.Instance.Application.Browser;
-             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+        public void Initialized()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
+        [TearDown]
+        public void LogsandScreenshot()
+        {
+            // Don't close the driver because of TeamCity  
+            //driver.Close();
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Nataliya Zh")]
+        public void NavigatetoRegisterPage()
+        {         
              RegisterPage RegPage = new RegisterPage(driver);
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
-          //   driver.Close();
-
         }
 
     }
