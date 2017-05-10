@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace BartlettAreTheQAs.Models
 {
@@ -13,8 +15,8 @@ namespace BartlettAreTheQAs.Models
     {
         public static string TestDataFileConnection()
         {
- 
-            var path = Environment.CurrentDirectory + ConfigurationManager.AppSettings["TestDataSheetPath"];
+           
+            var path = AppDomain.CurrentDomain.BaseDirectory+ "ExcelFilesData\\"; 
             var filename = "RegisterPageData.xlsx";
             var con = string.Format("Provider=Microsoft.ACE.OLEDB.12.0; Data Source = {0}; Extended Properties='Excel 12.0 Xml; HDR=YES; IMEX=1,';", path + filename);
             return con;
