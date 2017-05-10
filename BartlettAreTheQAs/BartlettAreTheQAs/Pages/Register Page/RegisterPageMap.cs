@@ -66,5 +66,29 @@ namespace BartlettAreTheQAs.Pages.Register_Page
             }
         }
 
+
+        public IWebElement EmailErrorMessage
+        {
+            get
+            {
+
+            //    this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
+
+            }
+        }
+
+
+
+        public IWebElement PasswordErrorMessage
+        {
+            get
+            {
+
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li[1]"));
+
+            }
+        }
+
     }
 }

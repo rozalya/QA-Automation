@@ -23,7 +23,7 @@ namespace BartlettAreTheQAs
         public void LogsandScreenshot()
         {
                   // Don't close the driver because of TeamCity  
-                  //driver.Close();
+            //     driver.Close();
 
         }
 
@@ -32,7 +32,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void NavigatetoBlog()
         {         
-            BlogHomePage home = new BlogHomePage(driver);
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Assert.IsTrue(home.Logo.Displayed);
         }
@@ -41,7 +41,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void  GoInFirstArticleLoggedUserNo()
         {
-            BlogHomePage home = new BlogHomePage(driver);
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticle.Click();
             IWebElement Text = driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
@@ -52,7 +52,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void FirstArticleClickOnEditBtnLoggerUserNo()
         {
-            BlogHomePage home = new BlogHomePage(driver);
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticle.Click();
             IWebElement EditButton = driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]"));

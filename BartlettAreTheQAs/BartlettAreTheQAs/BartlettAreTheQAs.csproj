@@ -128,7 +128,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configurations\Environment.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ExcelFilesData\RegisterPageData.xlsx" />
     <None Include="ExcelFilesData\TestCase_Blog.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
