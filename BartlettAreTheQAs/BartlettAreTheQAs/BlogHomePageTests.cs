@@ -1,8 +1,11 @@
 ﻿using BartlettAreTheQAs.Pages.HomePage;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Configuration;
+using System.IO;
 using TestStack.Seleno.Configuration;
 
 namespace BartlettAreTheQAs
@@ -22,8 +25,25 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-                  // Don't close the driver because of TeamCity  
-            //     driver.Close();
+
+
+            string filename = ConfigurationManager.AppSettings["Logs"] + TestContext.CurrentContext.Test.Name + ".txt";
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            File.WriteAllText(filename, TestContext.CurrentContext.Test.FullName + "        "
+                + TestContext.CurrentContext.WorkDirectory + "            "
+                + TestContext.CurrentContext.Result.PassCount);
+
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                var screenshot = ((ITakesScreenshot)this.driver).GetScreenshot();
+                screenshot.SaveAsFile(filename + TestContext.CurrentContext.Test.Name + ".jpg", ScreenshotImageFormat.Jpeg);
+            }
+
+            // Don't close the driver because of TeamCity  
+            //  driver.Close();
 
         }
 

@@ -294,3 +294,16 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/FirstArticleClickOnEditBtnLoggerUserNo.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/GoInFirstArticleLoggedUserNo.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/NavigatetoRegisterPage.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/NavigatetoBlog.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/PasswordDoNotMatch.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterAlreadyUsedEmail.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterAlreadyUsedEmail.txtRegisterAlreadyUsedEmail.jpg
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterInvalidEmail.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterWihtoutEmail.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterWithoutComfirmPassword.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterWithoutComfirmPassword.txtRegisterWithoutComfirmPassword.jpg
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterWithoutFullName.txt
+BartlettAreTheQAs/BartlettAreTheQAs/Logs/RegisterWithoutPassword.txt
