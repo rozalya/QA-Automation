@@ -13,9 +13,22 @@ namespace BartlettAreTheQAs.Pages.HomePage
         {
 
         }
+
+        public String URL
+        {
+            get
+            {
+                return base.URL + "Article/List/";
+            }
+
+        }
+
+
         public void NavigateTo()
         {
-            this.Driver.Navigate().GoToUrl("http://localhost:60634/Article/List");
+            
+            this.Driver.Navigate().GoToUrl(this.URL);
+            this.Driver.Manage().Window.Maximize();
         }
 
     }

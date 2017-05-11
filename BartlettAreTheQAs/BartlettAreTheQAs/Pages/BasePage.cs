@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace BartlettAreTheQAs.Pages
 
         private IWebDriver driver = BrowserHost.Instance.Application.Browser;
         private WebDriverWait wait;
-        //  protected String URL = ConfigurationManager.AppSettings["URL"];
+        protected String URL = ConfigurationManager.AppSettings["URL"];
 
         public BasePage(IWebDriver driver)
         {

@@ -14,9 +14,22 @@ namespace BartlettAreTheQAs.Pages.Register_Page
         {
         }
 
+        public String URL
+        {
+            get
+            {
+                return base.URL + "Account/Register/";
+            }
+
+        }
+
+
         public void NavigateTo()
         {
-            this.Driver.Navigate().GoToUrl("http://localhost:60634/Account/Register");
+           
+            this.Driver.Navigate().GoToUrl(this.URL);
+            this.Driver.Manage().Window.Maximize();
+
         }
 
 
