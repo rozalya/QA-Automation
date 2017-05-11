@@ -26,8 +26,8 @@ namespace BartlettAreTheQAs
         public void LogsandScreenshot()
         {
 
-
-            string filename = ConfigurationManager.AppSettings["Logs"] + TestContext.CurrentContext.Test.Name + ".txt";
+            var path = AppDomain.CurrentDomain.BaseDirectory + "Logs\\";
+            string filename = path + TestContext.CurrentContext.Test.Name + ".txt";
             if (File.Exists(filename))
             {
                 File.Delete(filename);
