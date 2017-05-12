@@ -16,25 +16,33 @@ namespace BartlettAreTheQAs.Attributes
         public TearDownClass(IWebDriver driver) : base(driver)
         {
         }
+        String localDate = DateTime.Now.ToString();
 
         public void TearLogs()
         {
-
+            
             var path = AppDomain.CurrentDomain.BaseDirectory + "Logs\\";
             string filename = path + TestContext.CurrentContext.Test.Name + ".txt";
+            string filenameJpg = path + TestContext.CurrentContext.Test.Name + ".jpg";
             if (File.Exists(filename))
             {
                 File.Delete(filename);
             }
-            File.WriteAllText(filename, TestContext.CurrentContext.Test.FullName + "        "
-                 + TestContext.CurrentContext.WorkDirectory + "            "
-                 + TestContext.CurrentContext.Result.PassCount + "           "
+            File.WriteAllText(filename, localDate + "::::: " + TestContext.CurrentContext.Test.MethodName + ":  "
+                 + TestContext.CurrentContext.WorkDirectory + " :  "
+                 + TestContext.CurrentContext.Result.PassCount + '\r'+'\n'
                  + TestContext.CurrentContext.Result.Message);
 
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                var screenshot = ((ITakesScreenshot)this.Driver).GetScreenshot();
-                screenshot.SaveAsFile(filename + TestContext.CurrentContext.Test.Name + ".jpg", ScreenshotImageFormat.Jpeg);
+                if (File.Exists(filenameJpg))
+                {
+                    File.Delete(filenameJpg);
+                }
+                
+                    var screenshot = ((ITakesScreenshot)this.Driver).GetScreenshot();
+                    screenshot.SaveAsFile(filenameJpg, ScreenshotImageFormat.Jpeg);
+              
             }
 
 
