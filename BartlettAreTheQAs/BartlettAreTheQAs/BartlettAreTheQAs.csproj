@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogHomePageTests.cs" />
+    <Compile Include="BlogManagePageTests.cs" />
+    <Compile Include="BlogLoginPageTests.cs" />
     <Compile Include="BlogRegisterPageTests.cs" />
     <Compile Include="BrowserHost.cs" />
     <Compile Include="Models\AccessExcelData.cs" />
@@ -139,6 +141,12 @@
     <Compile Include="Pages\HomePage\BlogHomePage.cs" />
     <Compile Include="Pages\HomePage\BlogHomePageAsserter.cs" />
     <Compile Include="Pages\HomePage\BlogHomePageMap.cs" />
+    <Compile Include="Pages\ManagePage\ManagePage.cs" />
+    <Compile Include="Pages\ManagePage\ManagePageAsserter.cs" />
+    <Compile Include="Pages\ManagePage\ManagePageMap.cs" />
+    <Compile Include="Pages\LogInPage\LoginPage.cs" />
+    <Compile Include="Pages\LogInPage\LoginPageAsserter.cs" />
+    <Compile Include="Pages\LogInPage\LoginPageMap.cs" />
     <Compile Include="Pages\Register Page\RegisterPage.cs" />
     <Compile Include="Pages\Register Page\RegisterPageAsserter.cs" />
     <Compile Include="Pages\Register Page\RegisterPageMap.cs" />
