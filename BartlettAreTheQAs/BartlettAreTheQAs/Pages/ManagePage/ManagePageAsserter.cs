@@ -10,18 +10,21 @@ namespace BartlettAreTheQAs.Pages.ManagePage
 public static  class ManagePageAsserter
     {
 
-        public static void AssertErrorMessage(this ManagePage page, string text)
+        public static void AssertFirstPasswordErrorMessage(this ManagePage page, string text)
         {
-            Assert.AreEqual(text, page.EmailErrorMessage.Text);
+            Assert.AreEqual(text, page.FirstPasswordErrorMessage.Text);
         }
 
 
-        public static void AssertPasswordErrorMessage(this ManagePage page, string text)
+        public static void AssertConfirmPasswordMessage(this ManagePage page, string text)
         {
-            Assert.AreEqual(text, page.EmailErrorMessage.Text);
+            Assert.AreEqual(text, page.PasswordSuccessChangeMessage.Text);
         }
 
-
+        public static void AssertSecondPasswordErrorMessage(this ManagePage page, string text)
+        {
+            Assert.AreEqual(text, page.SecondPasswordErrorMessage.Text);
+        }
 
 
     }

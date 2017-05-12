@@ -32,7 +32,7 @@ namespace BartlettAreTheQAs.Pages.ManagePage
 
             }
         }
-
+        
         public IWebElement PasswordChangeButton
         {
             get
@@ -44,7 +44,19 @@ namespace BartlettAreTheQAs.Pages.ManagePage
 
             }
         }
-        
+
+        public IWebElement ConfirmPasswordChangeButton
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[5]/div/input")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[5]/div/input"));
+
+
+            }
+        }
+
         public IWebElement Email
         {
             get
@@ -100,29 +112,47 @@ namespace BartlettAreTheQAs.Pages.ManagePage
             }
         }
 
-
-        public IWebElement EmailErrorMessage
+        public IWebElement PasswordSuccessChangeMessage
         {
             get
             {
 
-            //    this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li")));
-                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/p"));
 
             }
         }
 
 
-
-        public IWebElement PasswordErrorMessage
+        public IWebElement FirstPasswordErrorMessage
         {
             get
             {
 
-                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li[1]"));
+            return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
 
             }
         }
 
+        public IWebElement SecondPasswordErrorMessage
+        {
+            get
+            {
+
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li[2]"));
+
+            }
+        }
+
+        public IWebElement InvalidDataErrorMessage
+        {
+            get
+            {
+
+                return this.Driver.FindElement(By.XPath("/html/body/span/h2/i"));
+
+            }
+        }
+
+        
     }
 }

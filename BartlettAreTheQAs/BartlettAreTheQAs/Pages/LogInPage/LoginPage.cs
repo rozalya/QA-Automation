@@ -33,7 +33,7 @@ namespace BartlettAreTheQAs.Pages.LogInPage
         }
 
 
-        public void FillLoginForm(RegisterPageUserModel user)
+        public void FillLoginForm(ManagePageUserModel user)
         {
             Type(this.Email, user.Email);          
             Type(this.Password, user.Password);

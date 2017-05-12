@@ -33,11 +33,21 @@ namespace BartlettAreTheQAs.Pages.ManagePage
         }
 
 
-        public void FillLoginForm(RegisterPageUserModel user)
+        public void FillLoginForm(ManagePageUserModel user)
         {
             Type(this.Email, user.Email);
             Type(this.Password, user.Password);
             this.LoginButton.Click();
+
+
+        }
+
+        public void FillChangePasswordForm(ManagePageUserModel user)
+        {
+            Type(this.CurrentPassword, user.CurrentPassword);
+            Type(this.NewPassword, user.NewPassword);
+            Type(this.ConfirmPassword, user.ConfirmPassword);
+            this.ConfirmPasswordChangeButton.Click();
 
 
         }

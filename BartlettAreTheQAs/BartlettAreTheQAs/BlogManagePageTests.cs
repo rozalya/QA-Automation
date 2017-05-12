@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BartlettAreTheQAs.Attributes;
 using BartlettAreTheQAs.Pages.LogInPage;
 using BartlettAreTheQAs.Pages.ManagePage;
 
@@ -27,8 +28,8 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-            // Don't close the driver because of TeamCity  
-            //driver.Close();
+            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearLogs.TearLogs();
 
         }
 
@@ -39,89 +40,146 @@ namespace BartlettAreTheQAs
         {
             ManagePage managePage = new ManagePage(driver);
             managePage.NavigateTo();
-            var user = AccessExcelData.GetTestData("LogInValidEmail");
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin");
+            managePage.FillLoginForm(user);
+            Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void NavigateToPasswordChange()
+        {
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin");
+            managePage.FillLoginForm(user);
+            managePage.ManageAccountButton.Click();
+            Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+           
+        }
+
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void ValidPasswordChange()
+        {
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin");
             managePage.FillLoginForm(user);
             Assert.IsTrue(managePage.ManageAccountButton.Displayed);
             managePage.ManageAccountButton.Click();
             Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
             managePage.PasswordChangeButton.Click();
-        }
-
-       
-
-
-        [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void RegisterWihtoutEmail()
-        {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without mail");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertErrorMessage("The Email field is required.");
-
+            user = AccessExcelData.GetTestDataLogin("ValidPasswordChange");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertConfirmPasswordMessage("Your password has been changed.");
         }
 
         [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void RegisterAlreadyUsedEmail()
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithoutCurrentPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register already used email");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertErrorMessage("The Email adress is already used");
-
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+           // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithoutCurrentPassword");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertFirstPasswordErrorMessage("The Current password field is required.");
         }
 
         [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void RegisterWithoutFullName()
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithWrongCurrentPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without FullName");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertErrorMessage("The Full Name field is required.");
-
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+            // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithWrongCurrentPassword");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertFirstPasswordErrorMessage("Incorrect password.");
         }
 
         [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void RegisterWithoutPassword()
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithoutNewPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without Password");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertPasswordErrorMessage("The Password field is required.");
-
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+            // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithoutNewPassword");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertFirstPasswordErrorMessage("The New password field is required.");
+            managePage.AssertSecondPasswordErrorMessage("The new password and confirmation password do not match.");
         }
 
         [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void RegisterWithoutComfirmPassword()
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithoutConfirmPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without Confirm password");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertPasswordErrorMessage("The Confirm Password field is required.");
-
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+            // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithoutConfirmPassword");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertFirstPasswordErrorMessage("The new password and confirmation password do not match.");
         }
 
         [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void PasswordDoNotMatch()
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithoutData()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
-            RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Passwords do not match");
-            RegPage.FillRegistrationForm(userex);
-            RegPage.AssertPasswordErrorMessage("The password and confirmation password do not match.");
-
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+            // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithoutData");
+            managePage.FillChangePasswordForm(user);
+            managePage.AssertFirstPasswordErrorMessage("The Current password field is required.");
+            managePage.AssertSecondPasswordErrorMessage("The New password field is required.");
         }
 
-
+        //must fail
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void PasswordChangeWithInvalidSymbols()
+        {
+            ManagePage managePage = new ManagePage(driver);
+            managePage.NavigateTo();
+            var user = AccessExcelData.GetTestDataLogin("ValidLogin2");
+            managePage.FillLoginForm(user);
+            //Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+            managePage.ManageAccountButton.Click();
+            // Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestDataLogin("PasswordChangeWithInvalidSymbols");
+            managePage.FillChangePasswordForm(user);
+            Assert.AreEqual("A potentially dangerous Request.Form value was detected from the client (NewPassword=\"</\").", managePage.InvalidDataErrorMessage.Text);
+        }
     }
 }
