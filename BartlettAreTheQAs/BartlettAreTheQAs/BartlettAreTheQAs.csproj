@@ -130,6 +130,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\TearDownClass.cs" />
     <Compile Include="BlogHomePageTests.cs" />
     <Compile Include="BlogRegisterPageTests.cs" />
     <Compile Include="BrowserHost.cs" />

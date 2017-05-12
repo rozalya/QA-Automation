@@ -1,4 +1,5 @@
-﻿using BartlettAreTheQAs.Models;
+﻿using BartlettAreTheQAs.Attributes;
+using BartlettAreTheQAs.Models;
 using BartlettAreTheQAs.Pages.Register_Page;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -18,6 +19,7 @@ namespace BartlettAreTheQAs
     class BlogRegisterPageTests
     {
         public IWebDriver driver;
+        
         [SetUp]
 
         public void Initialized()
@@ -28,26 +30,10 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-          
-            var path = AppDomain.CurrentDomain.BaseDirectory + "Logs\\";
-            string filename = path + TestContext.CurrentContext.Test.Name + ".txt";
-            if (File.Exists(filename))
-            {
-                File.Delete(filename);
-            }
-            File.WriteAllText(filename, TestContext.CurrentContext.Test.FullName + "        "
-                 + TestContext.CurrentContext.WorkDirectory + "            "
-                 + TestContext.CurrentContext.Result.PassCount+ "           "
-                 + TestContext.CurrentContext.Result.Message);
-
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
-            {
-                var screenshot = ((ITakesScreenshot)this.driver).GetScreenshot();
-                screenshot.SaveAsFile(filename + TestContext.CurrentContext.Test.Name + ".jpg", ScreenshotImageFormat.Jpeg);
-            }
-
-
+            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearLogs.TearLogs();
         }
+
 
         [Test, Property("Priority", 2)]
         [Author("Nataliya Zh")]
