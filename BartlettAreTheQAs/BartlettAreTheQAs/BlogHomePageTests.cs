@@ -1,8 +1,12 @@
-﻿using BartlettAreTheQAs.Pages.HomePage;
+﻿using BartlettAreTheQAs.Attributes;
+using BartlettAreTheQAs.Pages.HomePage;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Configuration;
+using System.IO;
 using TestStack.Seleno.Configuration;
 
 namespace BartlettAreTheQAs
@@ -22,9 +26,8 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-                  // Don't close the driver because of TeamCity  
-            //     driver.Close();
-
+            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearLogs.TearLogs();
         }
 
 

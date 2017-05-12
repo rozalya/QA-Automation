@@ -1,10 +1,14 @@
-﻿using BartlettAreTheQAs.Models;
+﻿using BartlettAreTheQAs.Attributes;
+using BartlettAreTheQAs.Models;
 using BartlettAreTheQAs.Pages.Register_Page;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +19,7 @@ namespace BartlettAreTheQAs
     class BlogRegisterPageTests
     {
         public IWebDriver driver;
+        
         [SetUp]
 
         public void Initialized()
@@ -25,10 +30,10 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-            // Don't close the driver because of TeamCity  
-            //driver.Close();
-
+            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearLogs.TearLogs();
         }
+
 
         [Test, Property("Priority", 2)]
         [Author("Nataliya Zh")]
