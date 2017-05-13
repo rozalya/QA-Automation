@@ -49,5 +49,17 @@ namespace BartlettAreTheQAs.Models
             }
         }
 
+        public static AdminPageUserModel GetTestDataAdmin(string keyName)
+        {
+            using (var connection = new
+                OleDbConnection(TestDataFileConnection()))
+            {
+                connection.Open();
+                var query = string.Format("select * from [DataSet2$]where key = '{0}'", keyName);
+                var value = connection.Query<AdminPageUserModel>(query).FirstOrDefault();
+                connection.Close();
+                return value;
+            }
+        }
     }
 }
