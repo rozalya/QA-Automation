@@ -9,7 +9,7 @@ namespace BartlettAreTheQAs.Pages.HomePage
 {
     public partial class BlogHomePage : BasePage
     {
-        public BlogHomePage(IWebDriver driver) : base(driver)
+        public BlogHomePage() : base()
         {
 
         }

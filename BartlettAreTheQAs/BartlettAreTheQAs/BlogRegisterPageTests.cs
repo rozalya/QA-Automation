@@ -18,19 +18,10 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogRegisterPageTests
     {
-        public IWebDriver driver;
-        
-        [SetUp]
-
-        public void Initialized()
-        {
-            this.driver = BrowserHost.Instance.Application.Browser;
-        }
-
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearDownClass TearLogs = new TearDownClass();
             TearLogs.TearLogs();
         }
 
@@ -39,7 +30,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void NavigatetoRegisterPage()
         {         
-             RegisterPage RegPage = new RegisterPage(driver);
+             RegisterPage RegPage = new RegisterPage();
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
         }
@@ -48,9 +39,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterInvalidEmail()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("InvalidEmail");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "InvalidEmail");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertErrorMessage("The Email field is not a valid e-mail address.");
           
@@ -60,9 +51,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWihtoutEmail()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without mail");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without mail");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertErrorMessage("The Email field is required.");
 
@@ -72,9 +63,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterAlreadyUsedEmail()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register already used email");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register already used email");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertErrorMessage("The Email adress is already used");
 
@@ -84,9 +75,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutFullName()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without FullName");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without FullName");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertErrorMessage("The Full Name field is required.");
 
@@ -96,9 +87,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without Password");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without Password");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertPasswordErrorMessage("The Password field is required.");
 
@@ -108,9 +99,9 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutComfirmPassword()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Register without Confirm password");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without Confirm password");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertPasswordErrorMessage("The Confirm Password field is required.");
 
@@ -120,14 +111,11 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void PasswordDoNotMatch()
         {
-            RegisterPage RegPage = new RegisterPage(this.driver);
+            RegisterPage RegPage = new RegisterPage();
             RegPage.NavigateTo();
-            var userex = AccessExcelData.GetTestData("Passwords do not match");
+            var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Passwords do not match");
             RegPage.FillRegistrationForm(userex);
             RegPage.AssertPasswordErrorMessage("The password and confirmation password do not match.");
-
         }
-
-
     }
 }

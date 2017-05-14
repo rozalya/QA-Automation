@@ -134,10 +134,11 @@
     <Compile Include="BlogHomePageTests.cs" />
     <Compile Include="BlogAdminPageTests.cs" />
     <Compile Include="BlogManagePageTests.cs" />
-    <Compile Include="BlogLoginPageTests.cs" />
     <Compile Include="BlogRegisterPageTests.cs" />
     <Compile Include="BrowserHost.cs" />
+    <Compile Include="BlogLoginPageTests.cs" />
     <Compile Include="Models\AccessExcelData.cs" />
+    <Compile Include="Models\LogInUserModel.cs" />
     <Compile Include="Models\AdminPageUserModel.cs" />
     <Compile Include="Models\ManagePageUserModel.cs" />
     <Compile Include="Models\RegisterPageUserModel.cs" />

@@ -8,57 +8,28 @@ using BartlettAreTheQAs.Models;
 
 namespace BartlettAreTheQAs.Pages.LogInPage
 {
-    public partial class LoginPage : BasePage
+    public partial class LogInPage : BasePage
     {
-        public LoginPage(IWebDriver driver) : base(driver)
+        public LogInPage() : base()
         {
         }
-
-        public String URL
-        {
-            get
-            {
-                return base.URL + "Account/Login/";
-            }
-
-        }
-
 
         public void NavigateTo()
         {
-           
-            this.Driver.Navigate().GoToUrl(this.URL);
-            this.Driver.Manage().Window.Maximize();
-
+            this.Driver.Navigate().GoToUrl("http://localhost:60634/Account/Login");
         }
 
-
-        public void FillLoginForm(ManagePageUserModel user)
+        public void FillLogInData(LogInUserModel userData)
         {
-            Type(this.Email, user.Email);          
-            Type(this.Password, user.Password);
-            this.LoginButton.Click();
-
-
-        }
-
-
-        private void Type(IWebElement element, string text)
-        {
-            if (text == null)
+            if (userData.Email != null)
+                this.LogInEmail.SendKeys(userData.Email);
+            if (userData.Password != null)
+                this.LogInPassword.SendKeys(userData.Password);
+            if (userData.RememberMe == "1")
             {
-                element.Clear();
+                this.RememberMeCheckBox.Click();
             }
-            else
-            {
-                element.Clear();
-                element.SendKeys(text);
-            }
-
-
+            this.LogInBtn.Click();
         }
-
-
-
     }
 }

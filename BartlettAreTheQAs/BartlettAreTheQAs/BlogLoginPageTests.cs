@@ -1,143 +1,109 @@
 ﻿using BartlettAreTheQAs.Models;
-using BartlettAreTheQAs.Pages.Register_Page;
+using BartlettAreTheQAs.Pages.LogInPage;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using BartlettAreTheQAs.Attributes;
-using BartlettAreTheQAs.Pages.LogInPage;
 
 namespace BartlettAreTheQAs
 {
-    [TestFixture]
-    class BlogLoginPageTests
+    public class BlogLoginPageTests
     {
-        public IWebDriver driver;
-        [SetUp]
+        private LogInPage logInPage;
 
-        public void Initialized()
+        [SetUp]
+        public void TestSetUp()
         {
-            this.driver = BrowserHost.Instance.Application.Browser;
+            this.logInPage = new LogInPage();
+            logInPage.NavigateTo();
         }
 
         [TearDown]
-        public void LogsandScreenshot()
+        public void CleanUp()
         {
-            TearDownClass TearLogs = new TearDownClass(this.driver);
-            TearLogs.TearLogs();
-
+            //logInPage.Driver.Quit();
         }
 
-        [Test, Property("Priority", 2)]
-        [Author("Tatyana Milanova")]
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
         public void NavigateToLogInPage()
-        {         
-             LoginPage LogPage = new LoginPage(driver);
-             LogPage.NavigateTo();
-             Assert.IsTrue(LogPage.LoginButton.Displayed);
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Tatyana Milanova")]
-        public void LogInWithValidEmail()
         {
-            LoginPage LogPage = new LoginPage(driver);
-            LogPage.NavigateTo();
-            var user = AccessExcelData.GetTestDataLogin("ValidLogin");
-            LogPage.FillLoginForm(user);
-            Assert.IsTrue(LogPage.ManageAccountButton.Displayed);
-            
+            this.logInPage.AssertLogInPage("Log in");
         }
 
-        [Test, Property("Priority", 2)]
-        [Author("Tatyana Milanova")]
-        public void NavigateToManagePage()
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LoginSuccessfully()
         {
-            LoginPage LogPage = new LoginPage(driver);
-            LogPage.NavigateTo();
-            var user = AccessExcelData.GetTestDataLogin("ValidLogin");
-            LogPage.FillLoginForm(user);
-            Assert.IsTrue(LogPage.ManageAccountButton.Displayed);
-
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInSuccessfully");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertLogInSuccessfully("Log off");
         }
 
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInWithWrongEmail()
+        {
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithWrongEmail");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertMessageInvalidEmail("The Email field is not a valid e-mail address.");
+        }
 
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void RegisterWihtoutEmail()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Register without mail");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertErrorMessage("The Email field is required.");
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInWithWrongPassword()
+        {
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithWrongPass");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertMessageInvalidPass("Invalid login attempt.");
+        }
 
-        //}
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInWithoutgData()
+        {
+            logInPage.LogInBtn.Click();
+            this.logInPage.AssertMessageWithoutEmail("The Email field is required.");
+            this.logInPage.AssertMessageWithoutPass("The Password field is required.");
+        }
 
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void RegisterAlreadyUsedEmail()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Register already used email");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertErrorMessage("The Email adress is already used");
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInWithoutEmail()
+        {
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithoutEmail");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertMessageWithoutEmail("The Email field is required.");
+        }
 
-        //}
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInWithoutPass()
+        {
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithoutPass");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertMessageWithoutPass("The Password field is required.");
+        }
 
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void RegisterWithoutFullName()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Register without FullName");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertErrorMessage("The Full Name field is required.");
+        [Test, Property("Priory", 3)]
+        [Author("Neli Koynarska")]
+        public void LogInRemeberMe()
+        {
+            LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithCheckBox");
+            logInPage.FillLogInData(user);
+            this.logInPage.AssertLogInSuccessfully("Log off");
 
-        //}
-
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void RegisterWithoutPassword()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Register without Password");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertPasswordErrorMessage("The Password field is required.");
-
-        //}
-
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void RegisterWithoutComfirmPassword()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Register without Confirm password");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertPasswordErrorMessage("The Confirm Password field is required.");
-
-        //}
-
-        //[Test, Property("Priority", 2)]
-        //[Author("Nataliya Zh")]
-        //public void PasswordDoNotMatch()
-        //{
-        //    RegisterPage RegPage = new RegisterPage(this.driver);
-        //    RegPage.NavigateTo();
-        //    var userex = AccessExcelData.GetTestData("Passwords do not match");
-        //    RegPage.FillRegistrationForm(userex);
-        //    RegPage.AssertPasswordErrorMessage("The password and confirmation password do not match.");
-
-        //}
-
-
+            this.logInPage.Driver.Navigate().GoToUrl("https://google.com");
+            this.logInPage.NavigateTo();
+            this.logInPage.AssertLogInSuccessfully("Log off");
+        }
     }
 }

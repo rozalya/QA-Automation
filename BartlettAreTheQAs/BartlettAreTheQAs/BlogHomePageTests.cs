@@ -14,19 +14,11 @@ namespace BartlettAreTheQAs
 
     [TestFixture]
     class BlogHomePageTests
-    {
-        public IWebDriver driver;        
-        [SetUp]
-     
-        public void Initialized()
-        {
-            this.driver = BrowserHost.Instance.Application.Browser;
-        }
-
+    { 
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass(this.driver);
+            TearDownClass TearLogs = new TearDownClass();
             TearLogs.TearLogs();
         }
 
@@ -35,7 +27,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void NavigatetoBlog()
         {         
-            BlogHomePage home = new BlogHomePage(this.driver);
+            BlogHomePage home = new BlogHomePage();
             home.NavigateTo();
             Assert.IsTrue(home.Logo.Displayed);
         }
@@ -44,10 +36,10 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void  GoInFirstArticleLoggedUserNo()
         {
-            BlogHomePage home = new BlogHomePage(this.driver);
+            BlogHomePage home = new BlogHomePage();
             home.NavigateTo();
             home.FirstArticle.Click();
-            IWebElement Text = driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
+            IWebElement Text = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
             Assert.IsTrue(Text.Displayed);
         }
 
@@ -55,12 +47,12 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void FirstArticleClickOnEditBtnLoggerUserNo()
         {
-            BlogHomePage home = new BlogHomePage(this.driver);
+            BlogHomePage home = new BlogHomePage();
             home.NavigateTo();
             home.FirstArticle.Click();
-            IWebElement EditButton = driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]"));
+            IWebElement EditButton = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]"));
             EditButton.Click();
-            IWebElement Login = driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
+            IWebElement Login = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
             Assert.IsTrue(Login.Displayed);
         }
 

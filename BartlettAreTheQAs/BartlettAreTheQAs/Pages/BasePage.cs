@@ -9,20 +9,17 @@ using System.Threading.Tasks;
 
 namespace BartlettAreTheQAs.Pages
 {
-  public  class BasePage
+    public class BasePage
     {
 
         private IWebDriver driver = BrowserHost.Instance.Application.Browser;
         private WebDriverWait wait;
         protected String URL = ConfigurationManager.AppSettings["URL"];
 
-        public BasePage(IWebDriver driver)
+        public BasePage()
         {
-            this.driver = driver;
             this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
-
         }
-
 
         public IWebDriver Driver
         {
@@ -39,6 +36,5 @@ namespace BartlettAreTheQAs.Pages
             }
 
         }
-
     }
 }

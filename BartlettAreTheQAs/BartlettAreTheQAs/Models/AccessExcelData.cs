@@ -1,62 +1,30 @@
 ﻿using Dapper;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace BartlettAreTheQAs.Models
 {
-  public class AccessExcelData
+    public class AccessExcelData
     {
-        public static string TestDataFileConnection()
+        public static string TestDataFileConnection(string fileName)
         {
-           
-            var path = AppDomain.CurrentDomain.BaseDirectory+ "ExcelFilesData\\"; 
-            var filename = "RegisterPageData.xlsx";
-            var con = string.Format("Provider=Microsoft.ACE.OLEDB.12.0; Data Source = {0}; Extended Properties='Excel 12.0 Xml; HDR=YES; IMEX=1,';", path + filename);
+            var path = ConfigurationManager.AppSettings["TestDataSheetPath"];
+            path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+            var con = string.Format("Provider=Microsoft.ACE.OLEDB.12.0; Data Source = {0}; Extended Properties='Excel 12.0 Xml; HDR=YES; IMEX=1,';", path + fileName);
             return con;
-
         }
 
-        public static RegisterPageUserModel GetTestData(string keyName)
+        public static T GetTestData<T>(string fileName, string sheet, string keyName)
         {
             using (var connection = new
-                          OleDbConnection(TestDataFileConnection()))
+                          OleDbConnection(TestDataFileConnection(fileName)))
             {
                 connection.Open();
-                var query = string.Format("select * from [DataSet$]where key = '{0}'", keyName);
-                var value = connection.Query<RegisterPageUserModel>(query).FirstOrDefault();
-                connection.Close();
-                return value;
-            }
-        }
-
-        public static ManagePageUserModel GetTestDataLogin(string keyName)
-        {
-            using (var connection = new
-                OleDbConnection(TestDataFileConnection()))
-            {
-                connection.Open();
-                var query = string.Format("select * from [DataSet2$]where key = '{0}'", keyName);
-                var value = connection.Query<ManagePageUserModel>(query).FirstOrDefault();
-                connection.Close();
-                return value;
-            }
-        }
-
-        public static AdminPageUserModel GetTestDataAdmin(string keyName)
-        {
-            using (var connection = new
-                OleDbConnection(TestDataFileConnection()))
-            {
-                connection.Open();
-                var query = string.Format("select * from [DataSet2$]where key = '{0}'", keyName);
-                var value = connection.Query<AdminPageUserModel>(query).FirstOrDefault();
+                var query = string.Format("select * from [{0}$]where key = '{1}'", sheet, keyName);
+                var value = connection.Query<T>(query).FirstOrDefault();
                 connection.Close();
                 return value;
             }

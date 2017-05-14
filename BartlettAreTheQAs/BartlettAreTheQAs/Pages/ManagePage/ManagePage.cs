@@ -10,7 +10,7 @@ namespace BartlettAreTheQAs.Pages.ManagePage
 {
     public partial class ManagePage : BasePage
     {
-        public ManagePage(IWebDriver driver) : base(driver)
+        public ManagePage() : base()
         {
         }
 

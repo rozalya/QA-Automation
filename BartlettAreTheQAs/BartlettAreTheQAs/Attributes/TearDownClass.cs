@@ -13,7 +13,7 @@ namespace BartlettAreTheQAs.Attributes
 {
  public   class TearDownClass: BasePage
     {
-        public TearDownClass(IWebDriver driver) : base(driver)
+        public TearDownClass() : base()
         {
         }
         String localDate = DateTime.Now.ToString();
