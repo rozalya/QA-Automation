@@ -32,6 +32,100 @@ namespace BartlettAreTheQAs.Pages.HomePage
 
             }
         }
+        public IWebElement FirstArticleText
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p"));
+
+
+            }
+        }
+        public IWebElement FirstArticleAutor
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/footer/small")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/footer/small"));
+
+
+            }
+        }
+        public IWebElement RegisterLink
+        {
+            get
+            {
+               this.Wait.Until(w => w.FindElement(By.Id("registerLink")));
+                return this.Driver.FindElement(By.Id("registerLink"));
+                
+            }
+        }
+        public IWebElement LoginLink
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.Id("loginLink")));
+                return this.Driver.FindElement(By.Id("loginLink"));
+
+            }
+        }
+        public IWebElement LoadPage
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
+
+            }
+        }
+        public IWebElement LoadPageRegister
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
+
+            }
+        }
+        public IWebElement Email
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.Id("Email")));
+                return this.Driver.FindElement(By.Id("Email"));
+
+            }
+        }
+        public IWebElement Password
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.Id("Password")));
+                return this.Driver.FindElement(By.Id("Password"));
+
+            }
+        }
+        public IWebElement LogInBtn
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input"));
+
+            }
+        }
+        public IWebElement Hello
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[2]/a")));
+                return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[2]/a"));
+
+            }
+        }
 
     }
 }

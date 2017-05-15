@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BartlettAreTheQAs.Models;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,26 @@ namespace BartlettAreTheQAs.Pages.HomePage
             
             this.Driver.Navigate().GoToUrl(this.URL);
             this.Driver.Manage().Window.Maximize();
+        }
+       public void FillLogOn(HomePageLogInUserModel user)
+        {
+            Type(this.Email, user.Email);
+            Type(this.Password, user.Password);
+            this.LogInBtn.Click();
+        }
+        private void Type(IWebElement element, string text)
+        {
+            if (text == null)
+            {
+                element.Clear();
+            }
+            else
+            {
+                element.Clear();
+                element.SendKeys(text);
+            }
+
+
         }
 
     }
