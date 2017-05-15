@@ -138,7 +138,6 @@
     <Compile Include="BrowserHost.cs" />
     <Compile Include="BlogLoginPageTests.cs" />
     <Compile Include="Models\AccessExcelData.cs" />
-    <Compile Include="Models\HomePageLogInUserModel.cs" />
     <Compile Include="Models\LogInUserModel.cs" />
     <Compile Include="Models\AdminPageUserModel.cs" />
     <Compile Include="Models\ManagePageUserModel.cs" />

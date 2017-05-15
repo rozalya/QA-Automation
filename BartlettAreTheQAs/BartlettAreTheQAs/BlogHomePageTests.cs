@@ -1,10 +1,8 @@
 ﻿using BartlettAreTheQAs.Attributes;
-using BartlettAreTheQAs.Models;
 using BartlettAreTheQAs.Pages.HomePage;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Configuration;
@@ -57,122 +55,6 @@ namespace BartlettAreTheQAs
             IWebElement Login = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
             Assert.IsTrue(Login.Displayed);
         }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void HoverOnLogo()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.Logo).Perform();
-            home.HoverOnLogo("rgba(24, 188, 156, 1)");
-        }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void HoverOnArticle()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.FirstArticle).Perform();
-            home.HoverOnFirstArtilce("underline solid rgb(24, 188, 156)");
-        }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void FirstArticleText()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            home.FirstArticleText();
-        }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void FirstArticleAutor()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            home.FirstArticleAutor();
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Rozaliya Evtimova")]
-        public void RegisterDisplayNoLogInUser()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            home.RegisterLinkDisplayed();
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Rozaliya Evtimova")]
-        public void LogInDisplayNoLogInUser()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            home.LonInLinkDisplayed();
-        }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void HoverOnRegisterLink()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.RegisterLink).Perform();
-            home.HoverOnRegisterLink("rgba(24, 188, 156, 1)");
-        }
-
-        [Test, Property("Priority", 1)]
-        [Author("Rozaliya Evtimova")]
-        public void HoverOnLogInLink()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.LoginLink).Perform();
-            home.HoverOnLogInLink("rgba(24, 188, 156, 1)");
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Rozaliya Evtimova")]
-        public void ClickOnLoginLink()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.LoginLink).Click().Perform();
-            home.LogInLinkClick();
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Rozaliya Evtimova")]
-        public void ClickOnRegisterLink()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.RegisterLink).Click().Perform();
-            home.RegisterLinkClick();
-        }
-
-        [Test, Property("Priority", 2)]
-        [Author("Rozaliya Evtimova")]
-        public void LogInUserHelloElement()
-        {
-            BlogHomePage home = new BlogHomePage();
-            home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-            builder.MoveToElement(home.LoginLink).Click().Perform();
-            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
-                home.FillLogOn(user);
-            home.LogInHelloDiplay();
-        }
-
 
     }
 }
