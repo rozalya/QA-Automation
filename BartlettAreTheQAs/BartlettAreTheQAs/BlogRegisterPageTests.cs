@@ -31,6 +31,7 @@ namespace BartlettAreTheQAs
         public void NavigatetoRegisterPage()
         {         
              RegisterPage RegPage = new RegisterPage();
+
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
         }
