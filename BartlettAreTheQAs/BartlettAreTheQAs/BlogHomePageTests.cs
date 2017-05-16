@@ -13,7 +13,7 @@ using TestStack.Seleno.Configuration;
 
 namespace BartlettAreTheQAs
 {
-/* fiest comment
+
     [TestFixture]
     class BlogHomePageTests
     {
@@ -67,13 +67,17 @@ namespace BartlettAreTheQAs
             Assert.IsTrue(Login.Displayed);
         }
 
+
+       
+
         [Test, Property("Priority", 1)]
         [Author("Rozaliya Evtimova")]
         public void HoverOnLogo()
         {
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            //  Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.Logo).Perform();
             home.HoverOnLogo("rgba(24, 188, 156, 1)");
         }
@@ -84,7 +88,8 @@ namespace BartlettAreTheQAs
         {
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            //  Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.FirstArticle).Perform();
             home.HoverOnFirstArtilce("underline solid rgb(24, 188, 156)");
         }
@@ -111,10 +116,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void RegisterDisplayNoLogInUser()
         {
-            //Log off needed maybe
-          //  BlogHomePage home = new BlogHomePage(this.driver);
-          //  home.NavigateTo();
-          //  home.RegisterLinkDisplayed();
+          
+           BlogHomePage home = new BlogHomePage(this.driver);
+           home.NavigateTo();
+           home.RegisterLinkDisplayed();
            
         }
 
@@ -193,6 +198,6 @@ namespace BartlettAreTheQAs
     }
 
 
-    second comment*/
+  
 
 }
