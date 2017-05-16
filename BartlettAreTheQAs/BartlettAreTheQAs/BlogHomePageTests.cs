@@ -13,7 +13,7 @@ using TestStack.Seleno.Configuration;
 
 namespace BartlettAreTheQAs
 {
-
+/* fiest comment
     [TestFixture]
     class BlogHomePageTests
     {
@@ -111,9 +111,11 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void RegisterDisplayNoLogInUser()
         {
-            BlogHomePage home = new BlogHomePage(this.driver);
-            home.NavigateTo();
-            home.RegisterLinkDisplayed();
+            //Log off needed maybe
+          //  BlogHomePage home = new BlogHomePage(this.driver);
+          //  home.NavigateTo();
+          //  home.RegisterLinkDisplayed();
+           
         }
 
         [Test, Property("Priority", 2)]
@@ -189,4 +191,8 @@ namespace BartlettAreTheQAs
 
 
     }
+
+
+    second comment*/
+
 }

@@ -14,6 +14,8 @@ using BartlettAreTheQAs.Pages.ManagePage;
 
 namespace BartlettAreTheQAs
 {
+ 
+
     [TestFixture]
     class BlogManagePageTests
     {
@@ -45,8 +47,8 @@ namespace BartlettAreTheQAs
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
-            // Please check Assert ?
-           // Assert.IsTrue(managePage.ManageAccountButton.Displayed);
+           //  Please check Assert ?
+            Assert.IsTrue(managePage.ManageAccountButton.Displayed);
             
             
         }
@@ -60,8 +62,7 @@ namespace BartlettAreTheQAs
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
             managePage.ManageAccountButton.Click();
-            //Please check Aseert
-          //  Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+           Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
            
         }
 
@@ -187,7 +188,10 @@ namespace BartlettAreTheQAs
             user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "PasswordChangeWithInvalidSymbols");
             managePage.FillChangePasswordForm(user);
             //Origanl Aseert 
-         //   Assert.AreEqual("A potentially dangerous Request.Form value was detected from the client (NewPassword=\"</\").", managePage.InvalidDataErrorMessage.Text);
+            Assert.AreEqual("A potentially dangerous Request.Form value was detected from the client (NewPassword=\"</\").", managePage.InvalidDataErrorMessage.Text);
         }
     }
+
+
+   
 }

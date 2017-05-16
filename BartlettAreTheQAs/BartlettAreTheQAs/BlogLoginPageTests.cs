@@ -8,6 +8,8 @@ namespace BartlettAreTheQAs
 {
     public class BlogLoginPageTests
     {
+      
+ 
       public LogInPage logInPage;
 
         public IWebDriver driver;
@@ -134,5 +136,17 @@ namespace BartlettAreTheQAs
             //  this.logInPage.Driver.Navigate().GoToUrl("https://google.com");
             //  this.logInPage.AssertLogInSuccessfully("Log off");
         }
+
+
+
+ 
+
+  
     }
+
+
+  
+
+    
+
 }
