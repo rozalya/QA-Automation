@@ -32,6 +32,9 @@ namespace BartlettAreTheQAs.Pages.LogInPage
             this.Driver.Manage().Window.Maximize();
         }
 
+
+      
+
         public void FillLogInData(LogInUserModel userData)
         {
             if (userData.Email != null)
