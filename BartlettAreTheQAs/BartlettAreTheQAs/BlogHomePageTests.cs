@@ -77,7 +77,6 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
-          //  Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.Logo).Perform();
             home.HoverOnLogo("rgba(24, 188, 156, 1)");
         }
@@ -89,7 +88,6 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
-          //  Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.FirstArticle).Perform();
             home.HoverOnFirstArtilce("underline solid rgb(24, 188, 156)");
         }
@@ -138,8 +136,7 @@ namespace BartlettAreTheQAs
         {
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-              Actions builder = new Actions(home.Driver);
-           // Actions builder = new Actions(this.driver);
+            Actions builder = new Actions(home.Driver);
             builder.MoveToElement(home.RegisterLink).Perform();
             home.HoverOnRegisterLink("rgba(24, 188, 156, 1)");
         }
@@ -151,7 +148,6 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
-           // Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.LoginLink).Perform();
             home.HoverOnLogInLink("rgba(24, 188, 156, 1)");
         }
@@ -162,8 +158,7 @@ namespace BartlettAreTheQAs
         {
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
-           // Actions builder = new Actions(this.driver);
+            Actions builder = new Actions(home.Driver);        
             builder.MoveToElement(home.LoginLink).Click().Perform();
             home.LogInLinkClick();
         }
@@ -175,7 +170,6 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
-           // Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.RegisterLink).Click().Perform();
             home.RegisterLinkClick();
         }
@@ -187,17 +181,13 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
-          //  Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.LoginLink).Click().Perform();
             var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
-                home.FillLogOn(user);
+            home.FillLogOn(user);
             home.LogInHelloDiplay();
         }
 
-
     }
 
-
-  
 
 }
