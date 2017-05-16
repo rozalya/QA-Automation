@@ -18,10 +18,22 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogRegisterPageTests
     {
+        public IWebDriver driver;
+
+        [SetUp]
+
+        public void Initialized()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
+
+
+
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass();
+            TearDownClass TearLogs = new TearDownClass(this.driver);
             TearLogs.TearLogs();
         }
 
@@ -30,7 +42,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void NavigatetoRegisterPage()
         {         
-             RegisterPage RegPage = new RegisterPage();
+             RegisterPage RegPage = new RegisterPage(this.driver);
              RegPage.NavigateTo();
              Assert.IsTrue(RegPage.RegisterButton.Displayed);
         }
@@ -39,7 +51,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterInvalidEmail()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "InvalidEmail");
             RegPage.FillRegistrationForm(userex);
@@ -51,7 +63,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWihtoutEmail()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without mail");
             RegPage.FillRegistrationForm(userex);
@@ -63,7 +75,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterAlreadyUsedEmail()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register already used email");
             RegPage.FillRegistrationForm(userex);
@@ -75,7 +87,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutFullName()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without FullName");
             RegPage.FillRegistrationForm(userex);
@@ -87,7 +99,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutPassword()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without Password");
             RegPage.FillRegistrationForm(userex);
@@ -99,7 +111,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void RegisterWithoutComfirmPassword()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without Confirm password");
             RegPage.FillRegistrationForm(userex);
@@ -111,7 +123,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void PasswordDoNotMatch()
         {
-            RegisterPage RegPage = new RegisterPage();
+            RegisterPage RegPage = new RegisterPage(this.driver);
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Passwords do not match");
             RegPage.FillRegistrationForm(userex);

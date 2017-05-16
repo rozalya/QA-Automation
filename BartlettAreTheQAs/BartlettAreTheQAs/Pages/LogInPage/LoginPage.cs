@@ -10,13 +10,26 @@ namespace BartlettAreTheQAs.Pages.LogInPage
 {
     public partial class LogInPage : BasePage
     {
-        public LogInPage() : base()
+        public LogInPage(IWebDriver driver) : base(driver)
         {
         }
 
+       public String URL
+        {
+            get
+           {
+                return base.URL + "Account/Login/";
+           }
+
+        }
+
+
+
         public void NavigateTo()
         {
-            this.Driver.Navigate().GoToUrl("http://localhost:60634/Account/Login");
+           // this.Driver.Navigate().GoToUrl("http://localhost:60634/Account/Login");
+            this.Driver.Navigate().GoToUrl(this.URL);
+            this.Driver.Manage().Window.Maximize();
         }
 
         public void FillLogInData(LogInUserModel userData)

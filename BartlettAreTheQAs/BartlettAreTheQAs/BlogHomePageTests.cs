@@ -16,11 +16,20 @@ namespace BartlettAreTheQAs
 
     [TestFixture]
     class BlogHomePageTests
-    { 
+    {
+        public IWebDriver driver;
+
+        [SetUp]
+
+        public void Initialized()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass();
+            TearDownClass TearLogs = new TearDownClass(this.driver);
             TearLogs.TearLogs();
         }
 
@@ -29,7 +38,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void NavigatetoBlog()
         {         
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Assert.IsTrue(home.Logo.Displayed);
         }
@@ -38,7 +47,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void  GoInFirstArticleLoggedUserNo()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticle.Click();
             IWebElement Text = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
@@ -49,7 +58,7 @@ namespace BartlettAreTheQAs
         [Author("Nataliya Zh")]
         public void FirstArticleClickOnEditBtnLoggerUserNo()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticle.Click();
             IWebElement EditButton = home.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]"));
@@ -62,7 +71,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void HoverOnLogo()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
             builder.MoveToElement(home.Logo).Perform();
@@ -73,7 +82,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void HoverOnArticle()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);
             builder.MoveToElement(home.FirstArticle).Perform();
@@ -84,7 +93,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void FirstArticleText()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticleText();
         }
@@ -93,7 +102,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void FirstArticleAutor()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.FirstArticleAutor();
         }
@@ -102,7 +111,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void RegisterDisplayNoLogInUser()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.RegisterLinkDisplayed();
         }
@@ -111,7 +120,7 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void LogInDisplayNoLogInUser()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             home.LonInLinkDisplayed();
         }
@@ -120,9 +129,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void HoverOnRegisterLink()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            //   Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.RegisterLink).Perform();
             home.HoverOnRegisterLink("rgba(24, 188, 156, 1)");
         }
@@ -131,9 +141,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void HoverOnLogInLink()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            // Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.LoginLink).Perform();
             home.HoverOnLogInLink("rgba(24, 188, 156, 1)");
         }
@@ -142,9 +153,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void ClickOnLoginLink()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            //   Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.LoginLink).Click().Perform();
             home.LogInLinkClick();
         }
@@ -153,9 +165,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void ClickOnRegisterLink()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            //  Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.RegisterLink).Click().Perform();
             home.RegisterLinkClick();
         }
@@ -164,9 +177,10 @@ namespace BartlettAreTheQAs
         [Author("Rozaliya Evtimova")]
         public void LogInUserHelloElement()
         {
-            BlogHomePage home = new BlogHomePage();
+            BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
-            Actions builder = new Actions(home.Driver);
+            // Actions builder = new Actions(home.Driver);
+            Actions builder = new Actions(this.driver);
             builder.MoveToElement(home.LoginLink).Click().Perform();
             var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
                 home.FillLogOn(user);

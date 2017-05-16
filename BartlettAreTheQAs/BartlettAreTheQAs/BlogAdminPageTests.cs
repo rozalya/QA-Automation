@@ -17,19 +17,26 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogAdminPageTests
     {
+        public IWebDriver driver;
+
+        [SetUp]
+        public void Initialized()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass();
+            TearDownClass TearLogs = new TearDownClass(this.driver);
             TearLogs.TearLogs();
-
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void NavigateToAdminPage()
         {         
-             AdminPage adminPage = new AdminPage();
+             AdminPage adminPage = new AdminPage(this.driver);
              adminPage.NavigateTo();
              var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
              adminPage.FillLoginForm(user);
@@ -42,7 +49,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void NavigateToAdminPageUserManage()
         {
-            AdminPage adminPage = new AdminPage();
+            AdminPage adminPage = new AdminPage(this.driver);
             adminPage.NavigateTo();
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
             adminPage.FillLoginForm(user);
@@ -56,7 +63,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdmin()
         {
-            AdminPage adminPage = new AdminPage();
+            AdminPage adminPage = new AdminPage(this.driver);
             adminPage.NavigateTo();
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
             adminPage.FillLoginForm(user);

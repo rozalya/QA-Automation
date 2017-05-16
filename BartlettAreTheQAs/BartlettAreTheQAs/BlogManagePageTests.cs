@@ -17,21 +17,28 @@ namespace BartlettAreTheQAs
     [TestFixture]
     class BlogManagePageTests
     {
+        public IWebDriver driver;
+
+        [SetUp]
+
+        public void Initialized()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
 
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass();
+            TearDownClass TearLogs = new TearDownClass(this.driver);
             TearLogs.TearLogs();
-
         }
 
-      
+
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void NavigateToManagePage()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
@@ -43,7 +50,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void NavigateToPasswordChange()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
@@ -57,7 +64,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void ValidPasswordChange()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
 
@@ -75,7 +82,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithoutCurrentPassword()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);
@@ -92,7 +99,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithWrongCurrentPassword()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);
@@ -109,7 +116,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithoutNewPassword()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);
@@ -127,7 +134,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithoutConfirmPassword()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);
@@ -144,7 +151,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithoutData()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);
@@ -163,7 +170,7 @@ namespace BartlettAreTheQAs
         [Author("Tatyana Milanova")]
         public void PasswordChangeWithInvalidSymbols()
         {
-            ManagePage managePage = new ManagePage();
+            ManagePage managePage = new ManagePage(this.driver);
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
             managePage.FillLoginForm(user);

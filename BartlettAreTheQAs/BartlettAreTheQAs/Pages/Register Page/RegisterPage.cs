@@ -10,7 +10,7 @@ namespace BartlettAreTheQAs.Pages.Register_Page
 {
     public partial class RegisterPage : BasePage
     {
-        public RegisterPage() : base()
+        public RegisterPage(IWebDriver driver) : base(driver)
         {
         }
 

@@ -16,10 +16,13 @@ namespace BartlettAreTheQAs.Pages
         private WebDriverWait wait;
         protected String URL = ConfigurationManager.AppSettings["URL"];
 
-        public BasePage()
+        public BasePage(IWebDriver driver)
         {
+            this.driver = driver;
             this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
+
         }
+
 
         public IWebDriver Driver
         {
