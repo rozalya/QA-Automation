@@ -47,7 +47,43 @@
             Type(this.FullName, user.FullName);
             Type(this.Password, user.Password);
             Type(this.ConfirmPassword, user.ConfirmPassword);
+            ClickOnRolesCheckboxes(user);
             this.EditUserConfirmButton.Click();
+        }
+
+        private void ClickOnRolesCheckboxes(AdminPageUserModel user)
+        {
+            switch (user.RoleUser)
+            {
+                case "1":
+                    if (!this.RoleUserCheckbox.Selected)
+                    {
+                        RoleUserCheckbox.Click();
+                    }
+                    break;
+                case "0":
+                    if (this.RoleUserCheckbox.Selected)
+                    {
+                        RoleUserCheckbox.Click();
+                    }
+                    break;
+            }
+
+            switch (user.RoleAdmin)
+            {
+                case "1":
+                    if (!this.RoleAdminCheckbox.Selected)
+                    {
+                        RoleAdminCheckbox.Click();
+                    }
+                    break;
+                case "0":
+                    if (this.RoleAdminCheckbox.Selected)
+                    {
+                        RoleAdminCheckbox.Click();
+                    }
+                    break;
+            }
         }
 
         private void Type(IWebElement element, string text)

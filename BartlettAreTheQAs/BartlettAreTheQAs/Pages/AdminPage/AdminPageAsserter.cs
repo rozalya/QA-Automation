@@ -10,7 +10,16 @@ namespace BartlettAreTheQAs.Pages.AdminPage
 public static  class AdminPageAsserter
     {
 
-        // to do = add asserters!
+        public static void AssertErrorMessage(this AdminPage page, string text)
+        {
+            Assert.AreEqual(text, page.PasswordErrorMessage.Text);
+        }
+
+
+        public static void AssertConfirmMessage(this AdminPage page, string text)
+        {
+            Assert.AreEqual(text, page.SuccessChangeMessage.Text);
+        }
 
     }
 }

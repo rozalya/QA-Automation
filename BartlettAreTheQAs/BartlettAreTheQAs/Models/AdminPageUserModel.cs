@@ -17,5 +17,7 @@
         public string Id { get; set; }
         public string FullName { get; set; }
         public string UserEmail { get; set; }
+        public string RoleUser { get; set; }
+        public string RoleAdmin { get; set; }
     }
 }

@@ -6,6 +6,8 @@
 
     public partial class AdminPage
     {
+      
+
         public IWebElement LoginButton
         {
             get
@@ -177,6 +179,16 @@
                return this.Driver.FindElements(
                     By.CssSelector("body > div.container.body-content > div > div > table > tbody > tr")).ToList();
             }
+        }
+
+        public IWebElement PasswordErrorMessage
+        {
+            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div/ul/li")); }
+        }
+
+        public IWebElement SuccessChangeMessage
+        {
+            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/p")); }
         }
 
     }

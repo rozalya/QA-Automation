@@ -62,14 +62,107 @@
             adminPage.FillLoginForm(user);
             adminPage.AdminButton.Click();
             adminPage.UserManageButton.Click();
-            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUser");
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdmin");
             Assert.IsTrue(adminPage.User1EditButton.Displayed);
             adminPage.User1EditButton.Click();
             adminPage.FillUserEditForm(user);
             Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-            //must edit checkboxes
+          
         }
 
-        
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void EditUserInfoByAdminWithoutPassword()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            adminPage.UserManageButton.Click();
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutPassword");
+            Assert.IsTrue(adminPage.User1EditButton.Displayed);
+            adminPage.User1EditButton.Click();
+            adminPage.FillUserEditForm(user);
+            adminPage.AssertErrorMessage("The Password field is required.");
+            //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void EditUserInfoByAdminWithoutFullName()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            adminPage.UserManageButton.Click();
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutFullName");
+            Assert.IsTrue(adminPage.User1EditButton.Displayed);
+            adminPage.User1EditButton.Click();
+            adminPage.FillUserEditForm(user);
+            adminPage.AssertErrorMessage("The Full Name field is required.");
+            //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void EditUserInfoByAdminWithoutAnyData()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            adminPage.UserManageButton.Click();
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutAnyData");
+            Assert.IsTrue(adminPage.User1EditButton.Displayed);
+            adminPage.User1EditButton.Click();
+            adminPage.FillUserEditForm(user);
+            adminPage.AssertConfirmMessage("No changes are made.");
+            //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void EditUserInfoByAdminWithTwoRoles()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            adminPage.UserManageButton.Click();
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithTwoRoles");
+            Assert.IsTrue(adminPage.User1EditButton.Displayed);
+            adminPage.User1EditButton.Click();
+            adminPage.FillUserEditForm(user);
+            adminPage.AssertErrorMessage("Please check only one role!");
+            //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void EditUserInfoByAdminWithoutPasswordMatch()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            adminPage.UserManageButton.Click();
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutPasswordMatch");
+            Assert.IsTrue(adminPage.User1EditButton.Displayed);
+            adminPage.User1EditButton.Click();
+            adminPage.FillUserEditForm(user);
+            adminPage.AssertErrorMessage("The password and confirmation password do not match.");
+            //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
     }
 }
