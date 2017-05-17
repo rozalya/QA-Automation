@@ -20,6 +20,7 @@
         [TearDown]
         public void LogsandScreenshot()
         {
+            
             TearDownClass TearLogs = new TearDownClass(this.driver);
             TearLogs.TearLogs();
         }

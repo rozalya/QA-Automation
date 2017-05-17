@@ -29,8 +29,8 @@ namespace BartlettAreTheQAs
         [TearDown]
         public void LogsandScreenshot()
         {
-            TearDownClass TearLogs = new TearDownClass(this.driver);
-            TearLogs.TearLogs();
+           TearDownClass TearLogs = new TearDownClass(this.driver);
+           TearLogs.TearLogs();
         }
 
 
