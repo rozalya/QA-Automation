@@ -115,7 +115,7 @@ namespace BartlettAreTheQAs
             RegPage.NavigateTo();
             var userex = AccessExcelData.GetTestData<RegisterPageUserModel>("RegisterPageData.xlsx", "DataSet", "Register without Confirm password");
             RegPage.FillRegistrationForm(userex);
-            RegPage.AssertPasswordErrorMessage("The Confirm Password field is required.");
+            RegPage.AssertPasswordErrorMessage("The password and confirmation password do not match.");
 
         }
 
