@@ -1,20 +1,10 @@
-﻿using BartlettAreTheQAs.Models;
-using BartlettAreTheQAs.Pages.Register_Page;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BartlettAreTheQAs.Attributes;
-using BartlettAreTheQAs.Pages.LogInPage;
-using BartlettAreTheQAs.Pages.ManagePage;
-
-namespace BartlettAreTheQAs
+﻿namespace BartlettAreTheQAs
 {
- 
+    using BartlettAreTheQAs.Models;
+    using NUnit.Framework;
+    using OpenQA.Selenium;
+    using BartlettAreTheQAs.Attributes;
+    using BartlettAreTheQAs.Pages.ManagePage;
 
     [TestFixture]
     class BlogManagePageTests
@@ -62,10 +52,11 @@ namespace BartlettAreTheQAs
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
             managePage.ManageAccountButton.Click();
-           Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
+            Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
             //reverse password to previous one for other tests usage
             user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLoginReset");
-
+            managePage.FillLoginForm(user);
+            managePage.ManageAccountButton.Click();
         }
 
 

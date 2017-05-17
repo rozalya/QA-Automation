@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using BartlettAreTheQAs.Models;
-
-namespace BartlettAreTheQAs.Pages.ManagePage
+﻿namespace BartlettAreTheQAs.Pages.ManagePage
 {
+    using System;
+    using OpenQA.Selenium;
+    using BartlettAreTheQAs.Models;
+
     public partial class ManagePage : BasePage
     {
         public ManagePage(IWebDriver driver) : base(driver)
