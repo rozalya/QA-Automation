@@ -63,7 +63,9 @@ namespace BartlettAreTheQAs
             managePage.FillLoginForm(user);
             managePage.ManageAccountButton.Click();
            Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
-           
+            //reverse password to previous one for other tests usage
+            user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLoginReset");
+
         }
 
 
