@@ -159,7 +159,7 @@ namespace BartlettAreTheQAs
             BlogHomePage home = new BlogHomePage(this.driver);
             home.NavigateTo();
             Actions builder = new Actions(home.Driver);        
-            builder.MoveToElement(home.LoginLink).Click().Perform();
+           // builder.MoveToElement(home.LoginLink).Click().Perform();
             home.LogInLinkClick();
         }
 

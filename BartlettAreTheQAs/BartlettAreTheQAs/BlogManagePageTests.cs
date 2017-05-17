@@ -37,7 +37,7 @@
             managePage.NavigateTo();
             var user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin");
             managePage.FillLoginForm(user);
-           //  Please check Assert ?
+           
             Assert.IsTrue(managePage.ManageAccountButton.Displayed);
             
             
@@ -53,10 +53,7 @@
             managePage.FillLoginForm(user);
             managePage.ManageAccountButton.Click();
             Assert.IsTrue(managePage.PasswordChangeButton.Displayed);
-            //reverse password to previous one for other tests usage
-            user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLoginReset");
-            managePage.FillLoginForm(user);
-            managePage.ManageAccountButton.Click();
+            
         }
 
 
@@ -76,6 +73,11 @@
             user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidPasswordChange");
             managePage.FillChangePasswordForm(user);
             managePage.AssertConfirmPasswordMessage("Your password has been changed.");
+            //reverse password to previous one for other tests usage
+            managePage.PasswordChangeButton.Click();
+            user = AccessExcelData.GetTestData<ManagePageUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidPasswordChangeReset");
+            managePage.FillChangePasswordForm(user);
+          
         }
 
         [Test, Property("Priority", 2)]
