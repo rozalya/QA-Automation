@@ -170,9 +170,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ExcelFilesData\RegisterPageData.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="ExcelFilesData\LogInPageData.xlsx" />
+    <None Include="ExcelFilesData\RegisterPageData.xlsx" />
     <None Include="ExcelFilesData\TestCase_Blog.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
