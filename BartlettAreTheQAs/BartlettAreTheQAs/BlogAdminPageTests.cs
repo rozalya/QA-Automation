@@ -1,19 +1,11 @@
-﻿using BartlettAreTheQAs.Models;
-using BartlettAreTheQAs.Pages.Register_Page;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BartlettAreTheQAs.Attributes;
-using BartlettAreTheQAs.Pages.AdminPage;
-using BartlettAreTheQAs.Pages.LogInPage;
-
-namespace BartlettAreTheQAs
+﻿namespace BartlettAreTheQAs
 {
+    using BartlettAreTheQAs.Models;
+    using NUnit.Framework;
+    using OpenQA.Selenium;
+    using BartlettAreTheQAs.Attributes;
+    using BartlettAreTheQAs.Pages.AdminPage;
+
     [TestFixture]
     class BlogAdminPageTests
     {

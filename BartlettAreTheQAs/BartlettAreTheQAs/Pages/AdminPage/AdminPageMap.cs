@@ -1,13 +1,10 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BartlettAreTheQAs.Pages.AdminPage
+﻿namespace BartlettAreTheQAs.Pages.AdminPage
 {
-  public partial class AdminPage
+    using OpenQA.Selenium;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public partial class AdminPage
     {
         public IWebElement LoginButton
         {

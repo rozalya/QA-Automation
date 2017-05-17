@@ -1,13 +1,8 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BartlettAreTheQAs.Pages.ManagePage
+﻿namespace BartlettAreTheQAs.Pages.ManagePage
 {
-public static  class ManagePageAsserter
+    using NUnit.Framework;
+
+    public static class ManagePageAsserter
     {
 
         public static void AssertFirstPasswordErrorMessage(this ManagePage page, string text)
