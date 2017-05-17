@@ -21,9 +21,6 @@ namespace BartlettAreTheQAs.Attributes
 
         public void TearLogs()
         {
-            //   var path = AppDomain.CurrentDomain.BaseDirectory + "Logs\\";
-            string path = ConfigurationManager.AppSettings["Logs"];
-            path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
             string filename = path + TestContext.CurrentContext.Test.Name + ".txt";
             string filenameJpg = path + TestContext.CurrentContext.Test.Name + ".jpg";
             if (File.Exists(filename))
