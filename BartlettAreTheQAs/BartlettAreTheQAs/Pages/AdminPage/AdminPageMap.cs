@@ -167,9 +167,13 @@
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[6]/td[3]/a[1]")); }
         }
 
-        public IWebElement User2DeleteButton
+        public IWebElement User3DeleteButton
         {
-            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[4]/td[3]/a[2]")); }
+            get
+            {
+               // return DeleteUsersBtn["user3@a.a"];
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[4]/td[3]/a[2]"));
+            }
         }
 
         public IWebElement UserDeleteConfirmBtn
@@ -200,6 +204,90 @@
         {
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/p")); }
         }
-     
+
+        //проба грешка май се получи
+
+        public IList<IWebElement> All
+        {
+            get {return this.Driver.FindElements(By.CssSelector("body > div.container.body-content > div > div > table > tbody > tr>td")); }
+        }
+
+        public IList<IWebElement> AllEditDeleteBtn
+        {
+            get { return this.Driver.FindElements(By.CssSelector("body > div.container.body-content > div > div > table > tbody > tr>td>a")); }
+        }
+
+        public List<string> UsersId
+        {
+            get
+            {
+                List<string> usersId = new List<string>();
+                for (int index = 0; index < All.Count; index++)
+                {
+
+                    if (index % 3 == 0)
+                    {
+                        usersId.Add(All[index].Text);
+                    }
+
+                }
+                return usersId;
+            }
+        }
+
+        public List<string> UsersEmail
+        {
+            get
+            {
+                List<string> usersEmail = new List<string>();
+                for (int index = 0; index < All.Count; index++)
+                {
+
+                    if (index % 3 == 1)
+                    {
+                        usersEmail.Add(All[index].Text);
+                    }
+
+                }
+                return usersEmail;
+            }
+        }
+
+        public Dictionary<string, IWebElement> EditUsersBtn
+        {
+            get
+            {
+                Dictionary<string, IWebElement> editUsersBtn = new Dictionary<string, IWebElement>();
+                int j = 0;
+                for (int i = 0; i < AllEditDeleteBtn.Count; i++, j += 2)
+                {
+
+                    editUsersBtn[UsersEmail[i]] = AllEditDeleteBtn[j];
+                   
+
+                }
+                return editUsersBtn;
+            }
+        }
+
+        public Dictionary<string, IWebElement> DeleteUsersBtn
+        {
+            get
+            {
+                Dictionary<string, IWebElement> deleteUsersBtn = new Dictionary<string, IWebElement>();
+                int j = 0;
+                for (int i = 0; i < AllEditDeleteBtn.Count; i++, j += 2)
+                {
+
+                    
+                    deleteUsersBtn[UsersEmail[i]] = AllEditDeleteBtn[j + 1];
+
+                }
+                return deleteUsersBtn;
+            }
+        }
+
+        
+
     }
 }

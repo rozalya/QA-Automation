@@ -1,12 +1,14 @@
-﻿using System;
-
-namespace BartlettAreTheQAs
+﻿namespace BartlettAreTheQAs
 {
     using BartlettAreTheQAs.Models;
     using NUnit.Framework;
     using OpenQA.Selenium;
     using BartlettAreTheQAs.Attributes;
     using BartlettAreTheQAs.Pages.AdminPage;
+    using System.Collections.Generic;
+    using System;
+    using System.Linq;
+
 
     [TestFixture]
     class BlogAdminPageTests
@@ -195,6 +197,7 @@ namespace BartlettAreTheQAs
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
+        //TO DO
         public void DeleteUser()
         {
             AdminPage adminPage = new AdminPage(this.driver);
@@ -202,15 +205,18 @@ namespace BartlettAreTheQAs
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
             adminPage.FillLoginForm(user);
             adminPage.AdminButton.Click();
-          //  Assert.IsTrue(adminPage.UserManageButton.Displayed);
+            //  Assert.IsTrue(adminPage.UserManageButton.Displayed);
             adminPage.UserManageButton.Click();
-        // Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-           
+            // Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "DeleteUser3");
-            
-            Assert.IsTrue(adminPage.User2DeleteButton.Displayed);
-            adminPage.User2DeleteButton.Click();
+
+            Assert.IsTrue(adminPage.User3DeleteButton.Displayed);
+            adminPage.User3DeleteButton.Click();
             Assert.IsTrue(adminPage.UserDeleteConfirmBtn.Displayed);
+            //to do = register user after delete
+            //make dictionary from adminpageallusers list split id email edit delete and change xpath with css selector+ string
+
 
         }
     }
