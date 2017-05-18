@@ -32,6 +32,15 @@ namespace BartlettAreTheQAs.Pages.HomePage
 
             }
         }
+        public IWebElement FirstArticleTitle
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
+            }
+        }
+
         public IWebElement FirstArticleText
         {
             get
@@ -39,6 +48,17 @@ namespace BartlettAreTheQAs.Pages.HomePage
 
                 this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p")));
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p"));
+
+
+            }
+        }
+        public IWebElement FirstArticleEditButton
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]"));
 
 
             }

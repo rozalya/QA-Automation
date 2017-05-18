@@ -1,4 +1,6 @@
-﻿namespace BartlettAreTheQAs
+﻿using System;
+
+namespace BartlettAreTheQAs
 {
     using BartlettAreTheQAs.Models;
     using NUnit.Framework;
@@ -162,6 +164,53 @@
             adminPage.FillUserEditForm(user);
             adminPage.AssertErrorMessage("The password and confirmation password do not match.");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void CheckUserExist()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+            Assert.IsTrue(adminPage.UserManageButton.Displayed);
+            adminPage.UserManageButton.Click();
+            Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+            int count = 0;
+            foreach (IWebElement adminPageAllUsersElement in adminPage.AllUsersElements)
+            {
+                
+                if (adminPageAllUsersElement.Text.Contains(user.Email))
+                {
+                    count++;
+
+                }
+            }
+            Assert.IsTrue(count>0);
+           
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Tatyana Milanova")]
+        public void DeleteUser()
+        {
+            AdminPage adminPage = new AdminPage(this.driver);
+            adminPage.NavigateTo();
+            var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
+            adminPage.FillLoginForm(user);
+            adminPage.AdminButton.Click();
+          //  Assert.IsTrue(adminPage.UserManageButton.Displayed);
+            adminPage.UserManageButton.Click();
+        // Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+           
+            user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "DeleteUser3");
+            
+            Assert.IsTrue(adminPage.User2DeleteButton.Displayed);
+            adminPage.User2DeleteButton.Click();
+            Assert.IsTrue(adminPage.UserDeleteConfirmBtn.Displayed);
 
         }
     }

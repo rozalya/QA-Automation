@@ -167,6 +167,16 @@
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[6]/td[3]/a[1]")); }
         }
 
+        public IWebElement User2DeleteButton
+        {
+            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[4]/td[3]/a[2]")); }
+        }
+
+        public IWebElement UserDeleteConfirmBtn
+        {
+            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[3]/div/input")); }
+        }
+
         public IWebElement EditUserConfirmButton
         {
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[6]/div/input")); }
@@ -190,6 +200,6 @@
         {
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/p")); }
         }
-
+     
     }
 }
