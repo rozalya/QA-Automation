@@ -14,11 +14,14 @@
     class BlogAdminPageTests
     {
         public IWebDriver driver;
+        public AdminPage AdminPage;
 
         [SetUp]
         public void Initialized()
         {
             this.driver = BrowserHost.Instance.Application.Browser;
+            this.AdminPage = new AdminPage(this.driver);
+            AdminPage.NavigateTo();
         }
 
         [TearDown]
@@ -33,12 +36,12 @@
         [Author("Tatyana Milanova")]
         public void NavigateToAdminPage()
         {         
-             AdminPage adminPage = new AdminPage(this.driver);
-             adminPage.NavigateTo();
+             
              var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-             adminPage.FillLoginForm(user);
-             Assert.IsTrue(adminPage.ManageAccountButton.Displayed);
-             Assert.IsTrue(adminPage.AdminButton.Displayed);
+             AdminPage.FillLoginForm(user);
+             Assert.IsTrue(AdminPage.ManageAccountButton.Displayed);
+             Assert.IsTrue(AdminPage.AdminButton.Displayed);
+            AdminPage.LogoutBtnAsAdmin.Click();
             
         }
 
@@ -46,143 +49,136 @@
         [Author("Tatyana Milanova")]
         public void NavigateToAdminPageUserManage()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            Assert.IsTrue(adminPage.UserManageButton.Displayed);
-            adminPage.UserManageButton.Click();
-            Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            Assert.IsTrue(AdminPage.UserManageButton.Displayed);
+            AdminPage.UserManageButton.Click();
+            Assert.AreEqual("Users", AdminPage.UsersDisplayed.Text);
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdmin()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+            
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdmin");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-          
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            Assert.AreEqual("Users", AdminPage.UsersDisplayed.Text);
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdminWithoutPassword()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutPassword");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            adminPage.AssertErrorMessage("The Password field is required.");
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            AdminPage.AssertErrorMessage("The Password field is required.");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdminWithoutFullName()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutFullName");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            adminPage.AssertErrorMessage("The Full Name field is required.");
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            AdminPage.AssertErrorMessage("The Full Name field is required.");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdminWithoutAnyData()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutAnyData");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            adminPage.AssertConfirmMessage("No changes are made.");
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            AdminPage.AssertConfirmMessage("No changes are made.");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdminWithTwoRoles()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+            
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithTwoRoles");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            adminPage.AssertErrorMessage("Please check only one role!");
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            AdminPage.AssertErrorMessage("Please check only one role!");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void EditUserInfoByAdminWithoutPasswordMatch()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            adminPage.UserManageButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            AdminPage.UserManageButton.Click();
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "EditUserInfoByAdminWithoutPasswordMatch");
-            Assert.IsTrue(adminPage.User1EditButton.Displayed);
-            adminPage.User1EditButton.Click();
-            adminPage.FillUserEditForm(user);
-            adminPage.AssertErrorMessage("The password and confirmation password do not match.");
+            Assert.IsTrue(AdminPage.User1EditButton.Displayed);
+            AdminPage.User1EditButton.Click();
+            AdminPage.FillUserEditForm(user);
+            AdminPage.AssertErrorMessage("The password and confirmation password do not match.");
             //Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
-
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void CheckUserExist()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+            
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
-            Assert.IsTrue(adminPage.UserManageButton.Displayed);
-            adminPage.UserManageButton.Click();
-            Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
+            Assert.IsTrue(AdminPage.UserManageButton.Displayed);
+            AdminPage.UserManageButton.Click();
+            Assert.AreEqual("Users", AdminPage.UsersDisplayed.Text);
             int count = 0;
-            foreach (IWebElement adminPageAllUsersElement in adminPage.AllUsersElements)
+            foreach (IWebElement adminPageAllUsersElement in AdminPage.AllUsersElements)
             {
                 
                 if (adminPageAllUsersElement.Text.Contains(user.Email))
@@ -192,7 +188,7 @@
                 }
             }
             Assert.IsTrue(count>0);
-           
+            AdminPage.LogoutBtnAsAdmin.Click();
         }
 
         [Test, Property("Priority", 2)]
@@ -200,23 +196,22 @@
         //TO DO
         public void DeleteUser()
         {
-            AdminPage adminPage = new AdminPage(this.driver);
-            adminPage.NavigateTo();
+           
             var user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "AdminLogin");
-            adminPage.FillLoginForm(user);
-            adminPage.AdminButton.Click();
+            AdminPage.FillLoginForm(user);
+            AdminPage.AdminButton.Click();
             //  Assert.IsTrue(adminPage.UserManageButton.Displayed);
-            adminPage.UserManageButton.Click();
+            AdminPage.UserManageButton.Click();
             // Assert.AreEqual("Users", adminPage.UsersDisplayed.Text);
 
             user = AccessExcelData.GetTestData<AdminPageUserModel>("RegisterPageData.xlsx", "DataSet2", "DeleteUser3");
 
-            Assert.IsTrue(adminPage.User3DeleteButton.Displayed);
-            adminPage.User3DeleteButton.Click();
-            Assert.IsTrue(adminPage.UserDeleteConfirmBtn.Displayed);
+            Assert.IsTrue(AdminPage.User3DeleteButton.Displayed);
+            AdminPage.User3DeleteButton.Click();
+            Assert.IsTrue(AdminPage.UserDeleteConfirmBtn.Displayed);
             //to do = register user after delete
             //make dictionary from adminpageallusers list split id email edit delete and change xpath with css selector+ string
-
+            AdminPage.LogoutBtnAsAdmin.Click();
 
         }
     }

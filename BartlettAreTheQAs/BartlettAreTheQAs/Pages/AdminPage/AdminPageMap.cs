@@ -205,6 +205,28 @@
             get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/p")); }
         }
 
+        public IWebElement LogoutBtnAsUser
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[3]/a")));
+                return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[3]/a"));
+
+            }
+        }
+
+        public IWebElement LogoutBtnAsAdmin
+        {
+            get
+            {
+
+                this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[4]/a")));
+                return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[4]/a"));
+
+            }
+        }
+
         //проба грешка май се получи
 
         public IList<IWebElement> All
