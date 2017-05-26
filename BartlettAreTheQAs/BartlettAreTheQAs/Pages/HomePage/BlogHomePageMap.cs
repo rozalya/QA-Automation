@@ -147,5 +147,15 @@ namespace BartlettAreTheQAs.Pages.HomePage
             }
         }
 
+        public IWebElement LogOff
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[3]/a")));
+                return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[3]/a"));
+
+            }
+        }
+
     }
 }
