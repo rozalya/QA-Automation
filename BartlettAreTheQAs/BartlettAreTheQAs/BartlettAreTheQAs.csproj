@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\TearDownClass.cs" />
+    <Compile Include="BlogHomePageLoggedUser.cs" />
     <Compile Include="BlogHomePageTests.cs" />
     <Compile Include="BlogAdminPageTests.cs" />
     <Compile Include="BlogManagePageTests.cs" />

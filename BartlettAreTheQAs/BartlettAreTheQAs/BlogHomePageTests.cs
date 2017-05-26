@@ -54,9 +54,8 @@ namespace BartlettAreTheQAs
         [Test, Property("Priority", 2)]
         [Author("Nataliya Zh")]
         public void FirstArticleClickOnEditBtnLoggerUserNo()
-        {       
-                home.FirstArticle.Click();
-                home.FirstArticleEditButton.Click();
+        {
+                home.GototheFirstArctileClickOnEdit();
                 Assert.IsTrue( this.driver.Url.Contains("http://localhost:60634/Account/Login"));
         }
 

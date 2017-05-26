@@ -32,19 +32,6 @@ namespace BartlettAreTheQAs
         }
 
 
-        //   [SetUp]
-        //   public void TestSetUp()
-        //   {
-        //     this.logInPage = new LogInPage(this.driver);
-        //    logInPage.NavigateTo();
-        //   }
-
-       //   [TearDown]
-       //   public void CleanUp()
-       //   {
-            //logInPage.Driver.Quit();
-      //   }
-
         [Test, Property("Priory", 3)]
         [Author("Neli Koynarska")]
         public void NavigateToLogInPage()

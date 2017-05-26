@@ -157,5 +157,68 @@ namespace BartlettAreTheQAs.Pages.HomePage
             }
         }
 
+
+        public IWebElement Delete
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[2]")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[2]"));
+
+            }
+        }
+
+        public IWebElement ArctileBack
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[3]")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[3]"));
+
+            }
+        }
+
+        public IWebElement CreateArticleButton
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[2]/form/ul/li[1]/a")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[1]/div/div[2]/form/ul/li[1]/a"));
+
+            }
+        }
+
+
+        public IWebElement CreateArticleTitle
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.Id("Title")));
+                return this.Driver.FindElement(By.Id("Title"));
+
+            }
+        }
+
+        public IWebElement CreateArticleContent
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.Id("Content")));
+                return this.Driver.FindElement(By.Id("Content"));
+
+            }
+        }
+
+        public IWebElement CreateArticle_Btn_To_Create
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input"));
+
+            }
+        }
+
+
     }
 }
