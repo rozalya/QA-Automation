@@ -46,6 +46,17 @@ namespace BartlettAreTheQAs.Pages.HomePage
             get
             {
 
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2"));
+
+
+            }
+        }
+        public IWebElement FirstArticleBody
+        {
+            get
+            {
+
                 this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p")));
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/p"));
 
@@ -146,6 +157,15 @@ namespace BartlettAreTheQAs.Pages.HomePage
 
             }
         }
+        public IWebElement Manage
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/h2"));
+
+            }
+        }
 
         public IWebElement LogOff
         {
@@ -218,7 +238,25 @@ namespace BartlettAreTheQAs.Pages.HomePage
 
             }
         }
+        public IWebElement CreateLink
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[1]/a")));
+                return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[1]/a"));
 
+            }
+        }
+        public IWebElement CreateArticeleNamePage
+        {
+            get
+            {
+                this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/h2")));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/h2"));
+
+            }
+        }
+       
 
     }
 }

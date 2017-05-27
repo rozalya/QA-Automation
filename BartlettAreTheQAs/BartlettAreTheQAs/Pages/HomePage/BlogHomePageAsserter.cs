@@ -19,7 +19,19 @@ public static  class BlogHomePageAsserter
         }
         public static void FirstArticleText(this BlogHomePage page)
         {
-            Assert.IsTrue(page.FirstArticleText.Displayed);
+            Assert.IsTrue(page.FirstArticleBody.Displayed);
+        }
+        public static void CreateLinkDispleyd(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.CreateLink.Displayed);
+        }
+        public static void CreateNamePageDisplayed(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.CreateArticeleNamePage.Displayed);
+        }
+        public static void LogOffDisplayed(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.LogOff.Displayed);
         }
         public static void FirstArticleAutor(this BlogHomePage page)
         {
@@ -53,5 +65,18 @@ public static  class BlogHomePageAsserter
         {
             Assert.IsTrue(page.Hello.Displayed);
         }
+        public static void LogInManageDisplay(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.Manage.Displayed);
+        }
+        public static void LogoDisplayed(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.Logo.Displayed);
+        }
+        public static void FirstArtileTitleDisplayed(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.FirstArticleText.Displayed);
+        }
+
     }
 }

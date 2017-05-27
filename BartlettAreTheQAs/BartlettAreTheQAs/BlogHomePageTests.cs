@@ -131,6 +131,8 @@ namespace BartlettAreTheQAs
             home.LoginLink.Click();  
         }
 
+
+
         [Test, Property("Priority", 2)]
         [Author("Rozaliya Evtimova")]
         public void ClickOnRegisterLink()
@@ -149,7 +151,83 @@ namespace BartlettAreTheQAs
             home.FillLogOn(user);
             home.LogInHelloDiplay();
             home.LogOff.Click();
-            
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogInUserHelloElementClick()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.Hello.Click();
+            home.LogInManageDisplay();
+            home.LogOff.Click();
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogInUserCreateLink()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.CreateLinkDispleyd();
+            home.LogOff.Click();
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogInUserCreateLinkClick()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.CreateLink.Click();
+            home.CreateNamePageDisplayed();
+            home.LogOff.Click();
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogInUserBackToHomePageFromCreate()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.CreateLink.Click();
+            home.Logo.Click();
+            home.FirstArticleText();
+            home.LogOff.Click();
+
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogInUserBClickOnArticle()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.FirstArticle.Click();
+            home.FirstArtileTitleDisplayed();
+            home.LogOff.Click();
+
+        }
+        [Test, Property("Priority", 2)]
+        [Author("Rozaliya Evtimova")]
+        public void LogOffLink()
+        {
+            home.LoginLink.Click();
+            var user = AccessExcelData.GetTestData<HomePageLogInUserModel>("RegisterPageData.xlsx", "DataSet2", "ValidLogin2");
+            home.FillLogOn(user);
+            home.LogOffDisplayed();
+            home.LogOff.Click();
+
         }
     }
 }
