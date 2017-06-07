@@ -16,8 +16,7 @@ namespace BartlettAreTheQAs.Pages.LogInPage
         {
             get
             {
-                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input"));
-               
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input"));  
             }
         }
 
@@ -54,7 +53,6 @@ namespace BartlettAreTheQAs.Pages.LogInPage
         {
             get
             {
-                
                 return this.Driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[3]/a"));
             }
         }
@@ -62,49 +60,32 @@ namespace BartlettAreTheQAs.Pages.LogInPage
         {
             get
             {
-                // this.Wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/div[2]/div/div/form/div[1]/div/span/span")));
-                // return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/div/span/span"));
-
                 this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/div/span/span")));
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/div/span/span"));
-
-
             }
         }
         public IWebElement ErrorMessageInvalidPassword
         {
             get
             {
-                //  this.Wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li")));
-                //   return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
                 this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li")));
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
-
-
             }
         }
         public IWebElement ErrorMessageWithoutEmail
         {
             get
             {
-                //  this.Wait.Until(ExpectedConditions.ElementExists(By.XPath("html/body/div[2]/div/div/form/div[1]/div/span/span")));
-                //  return this.Driver.FindElement(By.XPath("html/body/div[2]/div/div/form/div[1]/div/span/span"));
                 this.Wait.Until(w => w.FindElement(By.XPath("html/body/div[2]/div/div/form/div[1]/div/span/span")));
                 return this.Driver.FindElement(By.XPath("html/body/div[2]/div/div/form/div[1]/div/span/span"));
-
             }
         }
         public IWebElement ErrorMessageWithoutPassword
         {
             get
             {
-                // this.Wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/div[2]/div/div/form/div[2]/div/span/span")));
-                //  return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[2]/div/span/span"));
-
                 this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[2]/div/span/span")));
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[2]/div/span/span"));
-
-
             }
         }
     }
