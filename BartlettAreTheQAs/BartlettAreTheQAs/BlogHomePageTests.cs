@@ -43,13 +43,13 @@ namespace BartlettAreTheQAs
             Assert.IsTrue(home.Logo.Displayed);
         }
 
-        [Test, Property("Priority", 2)]
-        [Author("Nataliya Zh")]
-        public void  GoInFirstArticleLoggedUserNo()
-        {
-            home.FirstArticle.Click();         
-            Assert.IsTrue(home.FirstArticleTitle.Displayed);
-        }
+      //  [Test, Property("Priority", 2)]
+     //   [Author("Nataliya Zh")]
+    //   public void  GoInFirstArticleLoggedUserNo()
+     //   {
+        //    home.FirstArticle.Click();         
+      //      Assert.IsTrue(home.FirstArticleTitle.Displayed);
+      //  }
 
         [Test, Property("Priority", 2)]
         [Author("Nataliya Zh")]
