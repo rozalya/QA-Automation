@@ -164,7 +164,7 @@
 
         public IWebElement User1EditButton
         {
-            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[6]/td[3]/a[1]")); }
+            get { return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/table/tbody/tr[7]/td[3]/a[1]")); }
         }
 
         public IWebElement User3DeleteButton

@@ -78,5 +78,10 @@ public static  class BlogHomePageAsserter
             Assert.IsTrue(page.FirstArticleText.Displayed);
         }
 
+        public static void RegisterURL(this BlogHomePage page)
+        {
+            Assert.IsTrue(page.Driver.Url.Contains("http://localhost:60634/Account/Login"));
+        }
+
     }
 }

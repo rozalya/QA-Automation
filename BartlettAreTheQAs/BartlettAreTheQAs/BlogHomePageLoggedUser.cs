@@ -42,8 +42,8 @@ namespace BartlettAreTheQAs
         {
                
             home.LogInwithNotOwner();
-            home.GototheFirstArctileClickOnEdit();
-            Assert.IsTrue(this.driver.Url.Contains("http://localhost:60634/Account/Login"));
+            home.GototheFirstArctileClickOnEdit();         
+            home.RegisterURL();
 
         }
 
@@ -54,8 +54,7 @@ namespace BartlettAreTheQAs
            
             home.LogInwithNotOwner();
             home.GototheFirstArctileClickOnDelete();
-            Assert.IsTrue(this.driver.Url.Contains("http://localhost:60634/Account/Login"));
-
+            home.RegisterURL();
         }
 
         [Test, Property("Priority", 2)]

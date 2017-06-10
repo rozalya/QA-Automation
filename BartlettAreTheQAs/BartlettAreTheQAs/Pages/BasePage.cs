@@ -19,7 +19,7 @@ namespace BartlettAreTheQAs.Pages
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
-            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(5));
 
         }
 

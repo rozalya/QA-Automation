@@ -18,7 +18,6 @@ namespace BartlettAreTheQAs
         public void Initialized()
         {
             this.driver = BrowserHost.Instance.Application.Browser;
-            // this.logInPage = new LogInPage(driver);
             logInPage = new LogInPage(this.driver);
             logInPage.NavigateTo();
 
@@ -36,7 +35,6 @@ namespace BartlettAreTheQAs
         [Author("Neli Koynarska")]
         public void NavigateToLogInPage()
         {
-          //  this.logInPage.AssertLogInPage("Log in");
              logInPage.AssertLogInPage("Log in");
         }
 
@@ -46,9 +44,7 @@ namespace BartlettAreTheQAs
         {
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInSuccessfully");
             logInPage.FillLogInData(user);
-           // this.logInPage.AssertLogInSuccessfully("Log off");
-             logInPage.AssertLogInSuccessfully("Log off");
-
+            logInPage.AssertLogInSuccessfully("Log off");
             logInPage.LogOffBtn.Click();
         }
 
@@ -58,9 +54,7 @@ namespace BartlettAreTheQAs
         {
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithWrongEmail");
             logInPage.FillLogInData(user);
-         //   this.logInPage.AssertMessageInvalidEmail("The Email field is not a valid e-mail address.");
-             logInPage.AssertMessageInvalidEmail("The Email field is not a valid e-mail address.");
-            
+            logInPage.AssertMessageInvalidEmail("The Email field is not a valid e-mail address.");
         }
 
         [Test, Property("Priory", 3)]
@@ -69,7 +63,6 @@ namespace BartlettAreTheQAs
         {
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithWrongPass");
             logInPage.FillLogInData(user);
-           // this.logInPage.AssertMessageInvalidPass("Invalid login attempt.");
             logInPage.AssertMessageInvalidPass("Invalid login attempt.");
           
         }
@@ -79,11 +72,9 @@ namespace BartlettAreTheQAs
         public void LogInWithoutgData()
         {
             logInPage.LogInBtn.Click();
-          //  this.logInPage.AssertMessageWithoutEmail("The Email field is required.");
-          //  this.logInPage.AssertMessageWithoutPass("The Password field is required.");
-             logInPage.AssertMessageWithoutEmail("The Email field is required.");
-             logInPage.AssertMessageWithoutPass("The Password field is required.");
-            
+            logInPage.AssertMessageWithoutEmail("The Email field is required.");
+            logInPage.AssertMessageWithoutPass("The Password field is required.");
+
         }
 
         [Test, Property("Priory", 3)]
@@ -92,9 +83,7 @@ namespace BartlettAreTheQAs
         {
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithoutEmail");
             logInPage.FillLogInData(user);
-          //  this.logInPage.AssertMessageWithoutEmail("The Email field is required.");
-             logInPage.AssertMessageWithoutEmail("The Email field is required.");
-          
+            logInPage.AssertMessageWithoutEmail("The Email field is required.");
         }
 
         [Test, Property("Priory", 3)]
@@ -103,25 +92,22 @@ namespace BartlettAreTheQAs
         {
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithoutPass");
             logInPage.FillLogInData(user);
-            //  this.logInPage.AssertMessageWithoutPass("The Password field is required.");
             logInPage.AssertMessageWithoutPass("The Password field is required.");
-            
         }
 
         [Test, Property("Priory", 3)]
         [Author("Neli Koynarska")]
         public void LogInRemeberMe()
        {
-            // this.logInPage = new LogInPage(driver);         
-            //  this.logInPage.NavigateTo();
-            // logInPage.NavigateTo();
+            
             LogInUserModel user = AccessExcelData.GetTestData<LogInUserModel>("LogInPageData.xlsx", "LogInUserData", "LogInWithCheckBox");
             logInPage.FillLogInData(user);
             logInPage.AssertLogInSuccessfully("Log off");
-            logInPage.LogOffBtn.Click();
-            //  this.logInPage.AssertLogInSuccessfully("Log off");
-            //  this.logInPage.Driver.Navigate().GoToUrl("https://google.com");
-            //  this.logInPage.AssertLogInSuccessfully("Log off");
+            logInPage.Driver.Navigate().GoToUrl("https://google.com");
+            logInPage.Driver.Navigate().GoToUrl("http://localhost:60634/Article/List");
+            logInPage.AssertLogInSuccessfully("Log off");
+            
+            
         }
 
 
