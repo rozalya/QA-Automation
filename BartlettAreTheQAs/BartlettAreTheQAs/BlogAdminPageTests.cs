@@ -146,7 +146,7 @@
             AdminPage.LogoutBtnAsAdmin.Click();
         }
 
-        [Test, Property("Priority", 2)]
+  /*      [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         public void CheckUserExist()
         {
@@ -171,7 +171,7 @@
             Assert.IsTrue(count > 0);
             AdminPage.LogoutBtnAsAdmin.Click();
         }
-
+*/
         [Test, Property("Priority", 2)]
         [Author("Tatyana Milanova")]
         //TO DO
