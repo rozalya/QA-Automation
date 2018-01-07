@@ -1,0 +1,1 @@
+SeleniumWebDriverFirstTests.TestDragAndDrop.ElementDetails       D:\SoftUni\TechModul\ProgramingFundamentals\SeleniumDesignPatternsDemo\SeleniumDesignPatternsDemo\bin\Debug

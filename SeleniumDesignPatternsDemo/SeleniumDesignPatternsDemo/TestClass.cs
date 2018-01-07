@@ -1,0 +1,587 @@
+﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.IE;
+using SeleniumDesignPatternsDemo.Models;
+using SeleniumDesignPatternsDemo.Pages.HomePage;
+using SeleniumDesignPatternsDemo.Pages.RegistrationPage;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Diagnostics;
+using System;
+using OpenQA.Selenium.Interactions;
+
+namespace SeleniumWebDriverFirstTests
+{
+    [TestFixture]
+    public class RegisterInDemoQA
+    {
+        public IWebDriver driver;
+
+        [SetUp]
+        public void Init()
+        {
+            //this.driver = new InternetExplorerDriver();
+            this.driver = new ChromeDriver();
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            this.driver.Quit();
+
+            //If you use Internet Explorer and browser don't close after test
+            //Process cmd = new Process();
+            //cmd.StartInfo.FileName = "cmd.exe";
+            //cmd.StartInfo.RedirectStandardInput = true;
+            //cmd.StartInfo.RedirectStandardOutput = true;
+            //cmd.StartInfo.CreateNoWindow = true;
+            //cmd.StartInfo.UseShellExecute = false;
+            //cmd.Start();
+            //
+            //cmd.StandardInput.WriteLine("taskkill /F /IM iexplore.exe");
+            //cmd.StandardInput.Flush();
+            //cmd.StandardInput.Close();
+            //Console.WriteLine(cmd.StandardOutput.ReadToEnd());
+        }
+
+        [Test, Property("Priority", 2)]
+        [Author("Ventsislav Ivanov")]
+        public void NavigateToRegistrationPage()
+        {
+            var homePage = new HomePage(driver);
+            var registrationPage = new RegistrationPage(driver);
+            PageFactory.InitElements(this.driver, homePage);
+
+            homePage.NavigateTo();
+            homePage.RegirstratonButton.Click();
+
+            registrationPage.AssertRegistrationPageIsOpen("Registration");
+        }
+
+        //Test with Valid Data, if you want to execute it change Username and Mail
+        //[Test]
+        //public void RegistrateWithValidData()
+        //{
+        //    var regPage = new RegistrationPage(this.driver);
+        //    RegistrationUser user = new RegistrationUser("Ventsislav",
+        //                                                 "Ivanov",
+        //                                                 new List<bool>(new bool[] { true, false, false }),
+        //                                                 new List<bool>(new bool[] { true, true, true }),
+        //                                                 "Bulgaria",
+        //                                                 "3",
+        //                                                 "1",
+        //                                                 "1989",
+        //                                                 "8888888888",
+        //                                                 "Buro",
+        //                                                 "burkata@abv.bg",
+        //                                                 @"C:\Users\Buro\Desktop\Seminar\Pics\enviroment.jpg",
+        //                                                 "OPSA",
+        //                                                 "12345678",
+        //                                                 "12345678");
+        //
+        //    regPage.NavigateTo();
+        //    regPage.FillRegistrationForm(user);
+        //
+        //    regPage.AssesrtSuccessMessage("Thank you for your registration");
+        //}
+
+        [Test]
+        public void RegistrateWithOutFirstName()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("",
+                                                         "",
+                                                         new List<bool>(new bool[] { true, false, false }),
+                                                         new List<bool>(new bool[] { true, true, true }),
+                                                         "Bulgaria",
+                                                         "3",
+                                                         "1",
+                                                         "1989",
+                                                         "8888888888",
+                                                         "Buro",
+                                                         "burkata@abv.bg",
+                                                         @"C:\Users\rozalia\Desktop\Seminar\Pics\enviroment.jpg",
+                                                         "OPSA",
+                                                         "12345678",
+                                                         "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+
+            regPage.AssertNamesErrorMessage("This field is required");
+        }
+        [Test]
+        public void RegistrateWithOutFamilyName()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Govani",
+                                                         "",
+                                                         new List<bool>(new bool[] { true, false, false }),
+                                                         new List<bool>(new bool[] { true, true, true }),
+                                                         "Bulgaria",
+                                                         "3",
+                                                         "1",
+                                                         "1989",
+                                                         "8888888888",
+                                                         "Buro",
+                                                         "dodo@abv.bg",
+                                                         @"",
+                                                         "user",
+                                                         "12345678",
+                                                         "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+
+            regPage.AssertNamesErrorMessageLastName("This field is required");
+        }
+
+        [Test]
+        public void RegistrateWithOutPhoneNumber()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ventsislav",
+                                                         "Ivanov",
+                                                         new List<bool>(new bool[] { true, false, false }),
+                                                         new List<bool>(new bool[] { true, true, true }),
+                                                         "Bulgaria",
+                                                         "3",
+                                                         "1",
+                                                         "1989",
+                                                         "",
+                                                         "Buro",
+                                                         "burkata@abv.bg",
+                                                         @"C:\Users\rozalia\Desktop\Seminar\Pics\enviroment.jpg",
+                                                         "OPSA",
+                                                         "12345678",
+                                                         "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+
+            regPage.AssertPhoneErrorMessage("This field is required");
+        }
+        [Test]
+        public void WithoutName()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("",
+                                                         "",
+                                                         new List<bool>(new bool[] { true, false, false }),
+                                                         new List<bool>(new bool[] { true, true, true }),
+                                                         "Bulgaria",
+                                                         "2",
+                                                         "2",
+                                                         "1980",
+                                                         "0888542356",
+                                                         "Rozi",
+                                                         "rozi1234@abv.bg",
+                                                         @"C:\Users\rozalia\Desktop\13907006_1258907070795860_1687096941490757226_n.jpg",
+                                                         "just some text",
+                                                         "12345678",
+                                                         "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+
+            regPage.AssertNamesErrorMessage("* This field is required");
+
+        }
+
+        [Test]
+        public void WeakPass()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                         "Stefanova",
+                                                         new List<bool>(new bool[] { true, false, false }),
+                                                         new List<bool>(new bool[] { true, true, true }),
+                                                         "Bulgaria",
+                                                         "2",
+                                                         "2",
+                                                         "1980",
+                                                         "0888542356",
+                                                         "Rozi",
+                                                         "rozi1234@abv.bg",
+                                                         @"C:\Users\rozalia\Desktop\13907006_1258907070795860_1687096941490757226_n.jpg",
+                                                         "just some text",
+                                                         "1234",
+                                                         "1234");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertShortPassErrorMessage("Very weak");
+            
+        }
+
+        [Test]
+        public void NoEmail()
+        {
+            var regPage = new RegistrationPage(driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                        "Stefanova",
+                                                        new List<bool>(new bool[] { true, false, false }),
+                                                        new List<bool>(new bool[] { true, true, true }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888542356",
+                                                        "Rozi",
+                                                        "",
+                                                        @"C:\Users\rozalia\Desktop\13907006_1258907070795860_1687096941490757226_n.jpg",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesForNoEmail("* This field is required");
+        }
+
+        [Test]
+        public void ShortPhoneNumber()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                        "Stefanova",
+                                                        new List<bool>(new bool[] { true, false, false }),
+                                                        new List<bool>(new bool[] { true, true, true }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "08885",
+                                                        "Rozi",
+                                                        "eyeyeye@abv.bg",
+                                                        @"C:\Users\rozalia\Desktop\13907006_1258907070795860_1687096941490757226_n.jpg",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesForShortPhone("* Minimum 10 Digits starting with Country Code");
+        }
+
+        [Test]
+        public void WithoutHobby()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, false }),
+                                                   new List<bool>(new bool[] { }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Rozi",
+                                                        "eyeyeye@abv.bg",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesNoHobby("* This field is required");
+            
+        }
+
+        [Test]
+        public void DublicateUserName()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, false }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Rozi",
+                                                        "eyeyeye@abv.bg",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesDublicateUser(": Username already exists");
+
+        }
+
+        [Test]
+        public void InvalidEmail()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Cvetana",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, false }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Fozi",
+                                                        "eyeyey",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesInvalideEmail("* Invalid email address");
+        }
+
+        [Test]
+        public void DuplicateEmail()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Marina",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, true }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Momo",
+                                                        "eyeyeye@abv.bg",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertNamesErrorMessageDublicateEmail(": E-mail address already exists");
+        }
+
+        [Test]
+        public void PasswordMismatch()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Carina",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, true }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Momo",
+                                                        "eyeyeye@abv.bg",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "1234");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertErrorMessagePasswordMismatch("* Fields do not match");
+
+
+        }
+
+        [Test]
+        public void StrengthIndicatorMismatch()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Carina",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, true }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "Momo",
+                                                        "eyeyeye@abv.bg",
+                                                        "",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "1234");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertErrorMessageStrengthIndicatorMismatch("Mismatch");
+        }
+
+        [Test]
+        public void RegistrateWithOutUserName()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Carina",
+                                                        "Stefanova",
+                                                   new List<bool>(new bool[] { true, false, true }),
+                                                   new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888547593",
+                                                        "",
+                                                        "eyeyeye@abv.bg",
+                                                         @"",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertNamesErrorMessageNoUserName("* This field is required");
+
+
+        }
+        [Test]
+        public void RegistrateWithInvalidPictureFormat()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                        "Stefanova",
+                                                        new List<bool>(new bool[] { true, true, false }),
+                                                        new List<bool>(new bool[] { false, false, false }),
+                                                        "Bulgaria",
+                                                        "2",
+                                                        "2",
+                                                        "1980",
+                                                        "0888542356",
+                                                        "Rozi",
+                                                        "hgfd@abv.bg",
+                                                        @"D:\2016-08-21.rar",
+                                                        "just some text",
+                                                        "12345678",
+                                                        "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertErrorMessageInvaldeFile("* Invalid File");
+
+
+        }
+
+        [Test]
+        public void WithoutPhoneAndUsername()
+        { 
+
+        var regPage = new RegistrationPage(this.driver);
+        RegistrationUser user = new RegistrationUser("Ivana",
+                                                    "Stefanova",
+                                                    new List<bool>(new bool[] { true, true, false }),
+                                                    new List<bool>(new bool[] { false, false, false }),
+                                                    "Bulgaria",
+                                                    "2",
+                                                    "2",
+                                                    "1980",
+                                                    "",
+                                                    "",
+                                                    "hgfd@abv.bg",
+                                                    @"",
+                                                    "just some text",
+                                                    "12345678",
+                                                    "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertNamesErrorMessageNoUserName("* This field is required");
+            regPage.AssertPhoneErrorMessage("* This field is required");
+
+
+        }
+
+        [Test]
+        public void WithoutHoobyAndPhone()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                    "Stefanova",
+                                                    new List<bool>(new bool[] { true, true, false }),
+                                                    new List<bool>(new bool[] { true, true, true}),
+                                                    "Bulgaria",
+                                                    "2",
+                                                    "2",
+                                                    "1980",
+                                                    "",
+                                                    "Fozy",
+                                                    "hgfd@abv.bg",
+                                                    @"",
+                                                    "just some text",
+                                                    "12345678",
+                                                    "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesNoHobby("* This field is required");
+            regPage.AssertPhoneErrorMessage("* This field is required");
+
+
+        }
+
+        [Test]
+        public void WithoutEmailAndPhone()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                    "Stefanova",
+                                                    new List<bool>(new bool[] { true, true, false }),
+                                                    new List<bool>(new bool[] { false, false, false }),
+                                                    "Bulgaria",
+                                                    "2",
+                                                    "2",
+                                                    "1980",
+                                                    "",
+                                                    "Fozy",
+                                                    "",
+                                                    @"",
+                                                    "just some text",
+                                                    "12345678",
+                                                    "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesForNoEmail("* This field is required");
+            regPage.AssertPhoneErrorMessage("* This field is required");
+
+
+        }
+
+        [Test]
+        public void WithoutSecondNameAndEmail()
+        {
+            var regPage = new RegistrationPage(this.driver);
+            RegistrationUser user = new RegistrationUser("Ivana",
+                                                    "",
+                                                    new List<bool>(new bool[] { true, true, false }),
+                                                    new List<bool>(new bool[] { false, false, false }),
+                                                    "Bulgaria",
+                                                    "2",
+                                                    "2",
+                                                    "1980",
+                                                    "0888654323",
+                                                    "Fozy",
+                                                    "",
+                                                    @"",
+                                                    "just some text",
+                                                    "12345678",
+                                                    "12345678");
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+            regPage.AssertMessagesForNoEmail("* This field is required");
+            regPage.AssertNamesErrorMessageLastName("This field is required");
+
+
+        }
+
+
+        public void Type(IWebElement element, string text)
+        {
+            element.Clear();
+            element.SendKeys(text);
+        }
+    }
+}
